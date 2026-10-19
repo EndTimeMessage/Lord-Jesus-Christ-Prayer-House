@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LORD JESUS CHRIST PRAYER HOUSE</title>
     
-    <!-- Mozilla PDF.js Engine for in-page mobile rendering -->
+    <!-- Mozilla PDF.js Engine -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
     <script>
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -16,18 +16,32 @@
         body { color: #333; line-height: 1.6; background-color: #f8f9fa; }
         
         /* Header */
-        header { background: #0f172a; color: white; padding: 1rem 5%; text-align: center; border-bottom: 1px solid #1e293b; }
+        header { background: #0b1120; color: white; padding: 1rem 5%; text-align: center; border-bottom: 1px solid #1e293b; }
         header h1 { font-size: 1.35rem; letter-spacing: 0.8px; font-weight: 700; }
 
-        /* Hero Banner */
+        /* Hero Banner with Custom Background Image */
         .hero { 
             position: relative; 
-            background: radial-gradient(circle at center, #1e293b 0%, #0a0f1d 100%); 
+            background-color: #080d1a;
             color: white; 
             text-align: center; 
-            padding: 45px 15px 35px; 
+            padding: 50px 15px 30px; 
             overflow: hidden; 
-            border-bottom: 3px solid #3b82f6;
+            border-bottom: 3px solid #2563eb;
+        }
+
+        /* Low Opacity Background Layer */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('banner.png') center/cover no-repeat;
+            opacity: 0.38;
+            filter: contrast(115%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .banner-corner-left {
@@ -67,20 +81,29 @@
             margin: 0 auto;
         }
 
+        /* Bright & Bold Church Name */
         .hero h2 { 
-            font-size: 2.5rem; 
+            font-size: 2.6rem; 
             font-weight: 800;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             margin-bottom: 8px; 
             color: #ffffff;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.4); 
+            text-shadow: 0 3px 12px rgba(0, 0, 0, 0.9), 0 0 25px rgba(37, 99, 235, 0.75); 
         }
-        .hero p { 
-            font-size: 1.15rem; 
-            margin-bottom: 18px; 
-            font-style: italic; 
-            color: #cbd5e1; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.7); 
+
+        /* Brighter Telugu Scripture Verse */
+        .verse-banner {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fef08a;
+            margin-bottom: 18px;
+            letter-spacing: 0.4px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95), 0 0 14px rgba(234, 179, 8, 0.6);
+            display: inline-block;
+            background: rgba(15, 23, 42, 0.6);
+            padding: 6px 18px;
+            border-radius: 30px;
+            border: 1px solid rgba(254, 240, 138, 0.35);
         }
 
         .banner-actions {
@@ -88,7 +111,7 @@
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 22px;
+            margin-bottom: 20px;
         }
 
         .loc-btn {
@@ -98,11 +121,11 @@
             background: #ef4444;
             color: white;
             text-decoration: none;
-            padding: 8px 18px;
+            padding: 7px 18px;
             border-radius: 25px;
             font-size: 0.92rem;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
             transition: all 0.2s ease;
         }
         .loc-btn:hover { background: #dc2626; transform: translateY(-2px); }
@@ -114,16 +137,16 @@
             background: #10b981;
             color: white;
             text-decoration: none;
-            padding: 8px 18px;
+            padding: 7px 18px;
             border-radius: 25px;
             font-size: 0.92rem;
             font-weight: 600;
-            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4);
             transition: all 0.2s ease;
         }
         .call-banner-btn:hover { background: #059669; transform: translateY(-2px); }
 
-        /* Centered Tabs Layout */
+        /* Single Line Tabs */
         .tabs-wrapper { 
             display: flex; 
             justify-content: space-between; 
@@ -131,13 +154,13 @@
             gap: 6px; 
             width: 100%;
             max-width: 940px;
-            margin: 0 auto;
+            margin: 0 auto 12px;
         }
 
         .tab-btn { 
             flex: 1;
-            background: rgba(255, 255, 255, 0.12); 
-            border: 1.5px solid rgba(255, 255, 255, 0.5); 
+            background: rgba(255, 255, 255, 0.15); 
+            border: 1.5px solid rgba(255, 255, 255, 0.6); 
             color: white; 
             padding: 10px 4px; 
             border-radius: 8px; 
@@ -150,10 +173,35 @@
         }
         .tab-btn:hover, .tab-btn.active { 
             background: #2563eb; 
-            border-color: #3b82f6; 
+            border-color: #60a5fa; 
             color: #ffffff; 
             transform: translateY(-2px); 
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); 
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5); 
+        }
+
+        /* Worship Timings Banner Bar */
+        .worship-timings {
+            background: rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            border-radius: 25px;
+            padding: 8px 18px;
+            display: inline-block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            white-space: nowrap;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+        .worship-timings span.title {
+            color: #38bdf8;
+            margin-right: 6px;
+        }
+        .worship-timings span.sep {
+            color: #94a3b8;
+            margin: 0 10px;
         }
 
         /* Container & Sections */
@@ -197,7 +245,7 @@
         .verse-num { font-weight: bold; color: #2563eb; margin-right: 8px; font-size: 0.95rem; }
         .loading { color: #64748b; font-style: italic; padding: 20px 0; }
 
-        /* In-Page Rendered PDF Reader */
+        /* Family Altar PDF Reader */
         .pdf-box { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
         .pdf-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
         .pdf-scroll-canvas-container { 
@@ -272,15 +320,17 @@
         }
 
         /* Footer */
-        footer { background: #0f172a; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid #1e293b; }
+        footer { background: #0b1120; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid #1e293b; }
         footer p { margin-bottom: 6px; color: #94a3b8; }
 
         @media (max-width: 850px) {
             .banner-corner-left { width: 85px; left: 8px; top: 12px; }
             .banner-corner-right { width: 85px; right: 8px; top: 12px; }
             .hero h2 { font-size: 1.6rem; }
+            .verse-banner { font-size: 0.95rem; padding: 5px 12px; }
             .tabs-wrapper { flex-wrap: wrap; }
             .tab-btn { flex: 1 1 30%; font-size: 0.8rem; padding: 8px 2px; }
+            .worship-timings { font-size: 0.8rem; padding: 6px 12px; }
             .bible-container { grid-template-columns: 1fr; }
             .info-row { flex-direction: column; align-items: flex-start; margin-bottom: 16px; }
             .info-label { width: 100%; margin-bottom: 2px; }
@@ -295,14 +345,20 @@
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
     </header>
 
-    <!-- Banner & Top-Corner Transparent Images -->
+    <!-- Banner -->
     <div class="hero">
+        <div class="hero-bg"></div>
+
         <img src="cloud.jpg" alt="Cloud" class="banner-corner-left" onerror="this.style.display='none'">
         <img src="eagle.jpg" alt="Eagle" class="banner-corner-right" onerror="this.style.display='none'">
 
         <div class="hero-content">
             <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
-            <p>"Only believe, all things are possible." — Mark 9:23</p>
+            
+            <!-- Brighter Telugu Scripture Verse from Banner Image -->
+            <div class="verse-banner">
+                యేసుక్రీస్తు నిన్న, నేడు, ఒక్కటేరీతిగా ఉన్నాడు; అవును యుగయుగములకును ఒక్కటేరీతిగా ఉండును - హెబ్రీయులకు 13:8[span_4](start_span)[span_4](end_span)
+            </div>
 
             <div class="banner-actions">
                 <a href="https://maps.app.goo.gl/bZECLUsx2BbVvVRQ7?g_st=ac" target="_blank" class="loc-btn">
@@ -313,7 +369,7 @@
                 </a>
             </div>
 
-            <!-- All 6 Tabs in Clean Row -->
+            <!-- Single-Line Centered Tabs -->
             <div class="tabs-wrapper">
                 <button type="button" class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible</button>
                 <button type="button" class="tab-btn" onclick="switchTab('altarTab', this)">🔥 Family Altar</button>
@@ -321,6 +377,11 @@
                 <button type="button" class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons</button>
                 <button type="button" class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Songs</button>
                 <button type="button" class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
+            </div>
+
+            <!-- Worship Timings (Single Line, Pipe Separated) -->
+            <div class="worship-timings">
+                <span class="title">Worship Timings :</span> Sunday 10:00 AM <span class="sep">|</span> Wednesday 6:00 PM <span class="sep">|</span> Saturday 6:00 PM
             </div>
         </div>
     </div>
@@ -406,7 +467,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FAMILY ALTAR (Native In-Page Rendered PDF) -->
+        <!-- TAB 2: FAMILY ALTAR -->
         <section id="altarTab" class="tab-section">
             <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar - PDF Book)</h2>
             <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read directly on this page):</p>
@@ -422,10 +483,7 @@
                     <span id="pdfLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
                 </div>
 
-                <!-- Continuous Scrollable PDF Pages -->
-                <div id="pdfViewerContainer" class="pdf-scroll-canvas-container">
-                    <!-- Pages render here automatically via PDF.js -->
-                </div>
+                <div id="pdfViewerContainer" class="pdf-scroll-canvas-container"></div>
             </div>
         </section>
 
@@ -435,7 +493,7 @@
             <p style="margin-bottom: 15px;">Photos, announcements, and special meeting updates:</p>
 
             <div id="galleryContainer" class="gallery-grid">
-                <div class="loading">Loading recent church updates...</div>
+                <div class="loading">Loading photos from gallery...</div>
             </div>
         </section>
 
@@ -517,8 +575,8 @@
                     <span class="info-val"><a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #2563eb; text-decoration: none;">@ksudhakar9743 ↗</a></span>
                 </div>
                 <div class="info-row" style="margin-top: 15px;">
-                    <span class="info-label">WEEKLY SERVICES:</span>
-                    <span class="info-val">Sunday Worship, Fasting Prayer & Family Fellowships. All are welcome!</span>
+                    <span class="info-label">WORSHIP TIMINGS:</span>
+                    <span class="info-val"><strong>Sunday 10:00 AM | Wednesday 6:00 PM | Saturday 6:00 PM</strong></span>
                 </div>
             </div>
         </section>
@@ -558,7 +616,6 @@
             }
         }
 
-        // Native PDF.js in-page continuous scroll renderer
         function renderPdfInPage() {
             var url = 'family-altar.pdf';
             var container = document.getElementById('pdfViewerContainer');
@@ -591,7 +648,7 @@
                     })(pageNum);
                 }
             }).catch(function(err) {
-                statusEl.innerHTML = '<span style="color:#ef4444;">PDF నేరుగా లోడ్ కాలేదు. ఫైల్ పేరు "family-altar.pdf" గా GitHub లో ఉందో లేదో సరిచూడండి.</span>';
+                statusEl.innerHTML = '<span style="color:#ef4444;">PDF నేరుగా లోడ్ కాలేదు. "family-altar.pdf" ఫైల్ GitHub లో ఉందో లేదో సరిచూడండి.</span>';
             });
         }
 
@@ -611,6 +668,7 @@
             fetchChapter();
         }
 
+        // Optimized Instant Bible Fetch
         async function fetchChapter() {
             var raw = document.getElementById('bookSelect').value;
             var parts = raw.split('|');
@@ -627,7 +685,7 @@
             var teContent = document.getElementById('teContent');
 
             enContent.innerHTML = `<div class="loading">Loading English verses...</div>`;
-            teContent.innerHTML = `<div class="loading">వచనములు లోడ్ అవుతున్నాయి...</div>`;
+            teContent.innerHTML = `<div class="loading">వచనములు వేగంగా లోడ్ అవుతున్నాయి...</div>`;
 
             // English
             try {
@@ -654,8 +712,11 @@
             }
 
             // High-Speed Direct Telugu Fetch
+            var loadedTelugu = false;
+            var bookPad = ("00" + parseInt(bookNum)).slice(-2);
+
             try {
-                var teRes = await fetch(`https://cdn.jsdelivr.net/gh/the-bibles/telugu-bible@master/books/${bookNum}.json`);
+                var teRes = await fetch(`https://cdn.jsdelivr.net/gh/the-bibles/telugu-bible@master/books/${bookPad}.json`);
                 if (teRes.ok) {
                     var teData = await teRes.json();
                     var chObj = teData.chapters.find(function(c) { return parseInt(c.chapter) === chapter; });
@@ -663,24 +724,28 @@
                         teContent.innerHTML = chObj.verses.map(function(v) {
                             return `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
                         }).join('');
-                        return;
+                        loadedTelugu = true;
                     }
                 }
-                throw new Error("CDN fallback");
-            } catch (err) {
+            } catch (e) {}
+
+            if (!loadedTelugu) {
                 try {
-                    var fallbackRes = await fetch(`https://raw.githubusercontent.com/the-bibles/telugu-bible/master/books/${bookNum}.json`);
-                    if (fallbackRes.ok) {
-                        var fbData = await fallbackRes.json();
-                        var fbCh = fbData.chapters.find(function(c) { return parseInt(c.chapter) === chapter; });
-                        if (fbCh && fbCh.verses) {
-                            teContent.innerHTML = fbCh.verses.map(function(v) {
+                    var rawRes = await fetch(`https://raw.githubusercontent.com/the-bibles/telugu-bible/master/books/${bookPad}.json`);
+                    if (rawRes.ok) {
+                        var rawData = await rawRes.json();
+                        var rawCh = rawData.chapters.find(function(c) { return parseInt(c.chapter) === chapter; });
+                        if (rawCh && rawCh.verses) {
+                            teContent.innerHTML = rawCh.verses.map(function(v) {
                                 return `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
                             }).join('');
-                            return;
+                            loadedTelugu = true;
                         }
                     }
                 } catch(e) {}
+            }
+
+            if (!loadedTelugu) {
                 teContent.innerHTML = `<div class="verse-item" id="te-v-1"><span class="verse-num">1</span> ఆదియందు దేవుడు భూమ్యాకాశములను సృజించెను.</div>`;
             }
         }
@@ -703,38 +768,57 @@
             }
         }
 
-        // Automatic GitHub Gallery Loader
+        // Resilient Automatic Gallery Loader
         async function loadGitHubGallery() {
             var container = document.getElementById('galleryContainer');
-            try {
-                var res = await fetch('https://api.github.com/repos/sampathVk/Lord-Jesus-Christ-Prayer-House/contents/gallery');
-                if (res.ok) {
-                    var files = await res.json();
-                    var imageFiles = files.filter(function(f) {
-                        return /\.(jpe?g|png|webp|gif)$/i.test(f.name);
-                    });
+            var repos = [
+                'sampathVk/Lord-Jesus-Christ-Prayer-House',
+                'kodamala-sampath-kumar/Lord-Jesus-Christ-Prayer-House'
+            ];
 
-                    if (imageFiles.length > 0) {
-                        container.innerHTML = imageFiles.map(function(img) {
-                            var cleanName = img.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
-                            return `
-                                <div class="gallery-item">
-                                    <a href="${img.download_url}" target="_blank">
-                                        <img src="${img.download_url}" alt="${cleanName}" loading="lazy">
-                                    </a>
-                                    <div class="gallery-caption">${cleanName}</div>
-                                </div>
-                            `;
-                        }).join('');
-                        return;
+            for (var r = 0; r < repos.length; r++) {
+                try {
+                    var res = await fetch(`https://api.github.com/repos/${repos[r]}/contents/gallery`);
+                    if (res.ok) {
+                        var files = await res.json();
+                        var images = files.filter(function(f) {
+                            return /\.(jpe?g|png|webp|gif)$/i.test(f.name);
+                        });
+
+                        if (images.length > 0) {
+                            container.innerHTML = images.map(function(img) {
+                                var cleanTitle = decodeURIComponent(img.name).replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+                                return `
+                                    <div class="gallery-item">
+                                        <a href="${img.download_url}" target="_blank">
+                                            <img src="${img.download_url}" alt="${cleanTitle}" loading="lazy">
+                                        </a>
+                                        <div class="gallery-caption">${cleanTitle}</div>
+                                    </div>
+                                `;
+                            }).join('');
+                            return;
+                        }
                     }
-                }
-            } catch (e) {}
+                } catch (e) {}
+            }
 
-            container.innerHTML = `
+            // Fallback scan for common file names
+            var defaultFiles = ['photo1.jpg', 'photo2.jpg', 'event1.jpg', 'church.jpg'];
+            var html = '';
+            defaultFiles.forEach(function(name) {
+                html += `
+                    <div class="gallery-item" style="display:none;" id="gal-${name.replace('.', '-')}">
+                        <img src="gallery/${name}" alt="Church Update" onload="document.getElementById('gal-${name.replace('.', '-')}').style.display='block';">
+                        <div class="gallery-caption">Church Update</div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html + `
                 <div style="grid-column: 1/-1; background: white; padding: 25px; border-radius: 8px; text-align: center; color: #64748b;">
-                    <p style="font-size: 1.05rem; margin-bottom: 8px;">No updates uploaded yet.</p>
-                    <p style="font-size: 0.9rem;">Upload images into a folder named <strong>gallery</strong> in your GitHub repository and they will automatically show here!</p>
+                    <p style="font-size: 1.05rem; margin-bottom: 6px;">Church updates and event photos appear here.</p>
+                    <p style="font-size: 0.9rem;">Upload images into the <strong>gallery</strong> folder in your GitHub repository.</p>
                 </div>
             `;
         }
