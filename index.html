@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LORD JESUS CHRIST PRAYER HOUSE</title>
+    
+    <!-- Mozilla PDF.js Engine for in-page mobile rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { color: #333; line-height: 1.6; background-color: #f8f9fa; }
@@ -23,7 +30,6 @@
             border-bottom: 3px solid #3b82f6;
         }
 
-        /* Pure Cloud (No square box, clean natural blend) */
         .banner-corner-left {
             position: absolute;
             left: 20px;
@@ -39,7 +45,6 @@
             z-index: 1;
         }
 
-        /* Pure Eagle (No square box, clean natural blend) */
         .banner-corner-right {
             position: absolute;
             right: 20px;
@@ -58,11 +63,10 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
         }
 
-        /* Larger Church Title */
         .hero h2 { 
             font-size: 2.5rem; 
             font-weight: 800;
@@ -72,14 +76,13 @@
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.4); 
         }
         .hero p { 
-            font-size: 1.18rem; 
+            font-size: 1.15rem; 
             margin-bottom: 18px; 
             font-style: italic; 
             color: #cbd5e1; 
             text-shadow: 0 2px 4px rgba(0,0,0,0.7); 
         }
 
-        /* Action Buttons */
         .banner-actions {
             display: flex;
             justify-content: center;
@@ -120,14 +123,14 @@
         }
         .call-banner-btn:hover { background: #059669; transform: translateY(-2px); }
 
-        /* All 5 Tabs in Single Line - No Scrollbar */
+        /* Centered Tabs Layout */
         .tabs-wrapper { 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            gap: 8px; 
+            gap: 6px; 
             width: 100%;
-            max-width: 860px;
+            max-width: 940px;
             margin: 0 auto;
         }
 
@@ -136,12 +139,13 @@
             background: rgba(255, 255, 255, 0.12); 
             border: 1.5px solid rgba(255, 255, 255, 0.5); 
             color: white; 
-            padding: 10px 6px; 
+            padding: 10px 4px; 
             border-radius: 8px; 
-            font-size: 0.88rem; 
+            font-size: 0.86rem; 
             font-weight: 600; 
             cursor: pointer; 
             text-align: center;
+            white-space: nowrap;
             transition: all 0.2s ease; 
         }
         .tab-btn:hover, .tab-btn.active { 
@@ -152,7 +156,7 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); 
         }
 
-        /* Container & Tabs */
+        /* Container & Sections */
         .container { max-width: 1150px; margin: 30px auto; padding: 0 20px; }
         .tab-section { display: none; }
         .tab-section.active { display: block; animation: fadeIn 0.25s ease-in; }
@@ -193,10 +197,28 @@
         .verse-num { font-weight: bold; color: #2563eb; margin-right: 8px; font-size: 0.95rem; }
         .loading { color: #64748b; font-style: italic; padding: 20px 0; }
 
-        /* Family Altar PDF Box */
+        /* In-Page Rendered PDF Reader */
         .pdf-box { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
-        .pdf-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
-        .pdf-frame { width: 100%; height: 750px; border: 1px solid #cbd5e1; border-radius: 8px; }
+        .pdf-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+        .pdf-scroll-canvas-container { 
+            width: 100%; 
+            max-height: 800px; 
+            overflow-y: auto; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 20px; 
+            padding: 15px; 
+            background: #475569; 
+            border-radius: 8px;
+        }
+        .pdf-page-canvas { 
+            max-width: 100%; 
+            height: auto !important; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.35); 
+            background: white; 
+            border-radius: 4px;
+        }
 
         /* Church Details Card */
         .info-card { background: white; border-radius: 10px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); border-left: 5px solid #2563eb; }
@@ -219,6 +241,36 @@
         }
         .phone-call-btn:hover { background: #059669; }
 
+        /* Auto Gallery for Wiki/Updates */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .gallery-item:hover { transform: translateY(-4px); }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-caption {
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            color: #475569;
+            font-weight: 500;
+            background: #fff;
+            border-top: 1px solid #f1f5f9;
+        }
+
         /* Footer */
         footer { background: #0f172a; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid #1e293b; }
         footer p { margin-bottom: 6px; color: #94a3b8; }
@@ -228,11 +280,11 @@
             .banner-corner-right { width: 85px; right: 8px; top: 12px; }
             .hero h2 { font-size: 1.6rem; }
             .tabs-wrapper { flex-wrap: wrap; }
-            .tab-btn { flex: 1 1 45%; font-size: 0.85rem; padding: 8px 4px; }
+            .tab-btn { flex: 1 1 30%; font-size: 0.8rem; padding: 8px 2px; }
             .bible-container { grid-template-columns: 1fr; }
             .info-row { flex-direction: column; align-items: flex-start; margin-bottom: 16px; }
             .info-label { width: 100%; margin-bottom: 2px; }
-            .pdf-frame { height: 500px; }
+            .pdf-scroll-canvas-container { max-height: 550px; padding: 8px; }
         }
     </style>
 </head>
@@ -245,17 +297,13 @@
 
     <!-- Banner & Top-Corner Transparent Images -->
     <div class="hero">
-        <!-- Cloud Top-Left (Transparent blend, no square background) -->
         <img src="cloud.jpg" alt="Cloud" class="banner-corner-left" onerror="this.style.display='none'">
-
-        <!-- Eagle Top-Right (Transparent blend, no square background) -->
         <img src="eagle.jpg" alt="Eagle" class="banner-corner-right" onerror="this.style.display='none'">
 
         <div class="hero-content">
             <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
             <p>"Only believe, all things are possible." — Mark 9:23</p>
 
-            <!-- Banner Action Buttons -->
             <div class="banner-actions">
                 <a href="https://maps.app.goo.gl/bZECLUsx2BbVvVRQ7?g_st=ac" target="_blank" class="loc-btn">
                     📍 Google Maps Pin ↗
@@ -265,10 +313,11 @@
                 </a>
             </div>
 
-            <!-- Single-Line Centered Tabs (No scrollbar, all 5 visible) -->
+            <!-- All 6 Tabs in Clean Row -->
             <div class="tabs-wrapper">
                 <button type="button" class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible</button>
                 <button type="button" class="tab-btn" onclick="switchTab('altarTab', this)">🔥 Family Altar</button>
+                <button type="button" class="tab-btn" onclick="switchTab('updatesTab', this)">📸 Wiki / Updates</button>
                 <button type="button" class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons</button>
                 <button type="button" class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Songs</button>
                 <button type="button" class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
@@ -288,29 +337,45 @@
                     <label for="bookSelect"><strong>Book:</strong></label>
                     <select id="bookSelect" onchange="onBookChange()">
                         <optgroup label="Old Testament (పాత నిబంధన)">
-                            <option value="GEN|Genesis|ఆదికాండము|50" selected>Genesis (ఆదికాండము)</option>
-                            <option value="EXO|Exodus|నిర్గమకాండము|40">Exodus (నిర్గమకాండము)</option>
-                            <option value="LEV|Leviticus|లేవీయకాండము|27">Leviticus (లేవీయకాండము)</option>
-                            <option value="NUM|Numbers|సంఖ్యాకాండము|36">Numbers (సంఖ్యాకాండము)</option>
-                            <option value="DEU|Deuteronomy|ద్వితీయోపదేశకాండము|34">Deuteronomy (ద్వితీయోపదేశకాండము)</option>
-                            <option value="JOS|Joshua|యెహోషువ|24">Joshua (యెహోషువ)</option>
-                            <option value="PSA|Psalms|కీర్తనలు|150">Psalms (కీర్తనలు)</option>
-                            <option value="PRO|Proverbs|సామెతలు|31">Proverbs (సామెతలు)</option>
-                            <option value="ISA|Isaiah|యెషయా|66">Isaiah (యెషయా)</option>
-                            <option value="JER|Jeremiah|యిర్మీయా|52">Jeremiah (యిర్మీయా)</option>
+                            <option value="GEN|01|Genesis|ఆదికాండము|50" selected>Genesis (ఆదికాండము)</option>
+                            <option value="EXO|02|Exodus|నిర్గమకాండము|40">Exodus (నిర్గమకాండము)</option>
+                            <option value="LEV|03|Leviticus|లేవీయకాండము|27">Leviticus (లేవీయకాండము)</option>
+                            <option value="NUM|04|Numbers|సంఖ్యాకాండము|36">Numbers (సంఖ్యాకాండము)</option>
+                            <option value="DEU|05|Deuteronomy|ద్వితీయోపదేశకాండము|34">Deuteronomy (ద్వితీయోపదేశకాండము)</option>
+                            <option value="JOS|06|Joshua|యెహోషువ|24">Joshua (యెహోషువ)</option>
+                            <option value="JDG|07|Judges|న్యాయాధిపతులు|21">Judges (న్యాయాధిపతులు)</option>
+                            <option value="RUT|08|Ruth|రూతు|4">Ruth (రూతు)</option>
+                            <option value="1SA|09|1 Samuel|1 సమూయేలు|31">1 Samuel (1 సమూయేలు)</option>
+                            <option value="2SA|10|2 Samuel|2 సమూయేలు|24">2 Samuel (2 సమూయేలు)</option>
+                            <option value="1KI|11|1 Kings|1 రాజులు|22">1 Kings (1 రాజులు)</option>
+                            <option value="2KI|12|2 Kings|2 రాజులు|25">2 Kings (2 రాజులు)</option>
+                            <option value="1CH|13|1 Chronicles|1 దినవృత్తాంతములు|29">1 Chronicles (1 దినవృత్తాంతములు)</option>
+                            <option value="2CH|14|2 Chronicles|2 దినవృత్తాంతములు|36">2 Chronicles (2 దినవృత్తాంతములు)</option>
+                            <option value="PSA|19|Psalms|కీర్తనలు|150">Psalms (కీర్తనలు)</option>
+                            <option value="PRO|20|Proverbs|సామెతలు|31">Proverbs (సామెతలు)</option>
+                            <option value="ISA|23|Isaiah|యెషయా|66">Isaiah (యెషయా)</option>
+                            <option value="JER|24|Jeremiah|యిర్మీయా|52">Jeremiah (యిర్మీయా)</option>
                         </optgroup>
                         <optgroup label="New Testament (క్రొత్త నిబంధన)">
-                            <option value="MAT|Matthew|మత్తయి|28">Matthew (మత్తయి)</option>
-                            <option value="MRK|Mark|మార్కు|16">Mark (మార్కు)</option>
-                            <option value="LUK|Luke|లూకా|24">Luke (లూకా)</option>
-                            <option value="JHN|John|యోహాను|21">John (యోహాను)</option>
-                            <option value="ACT|Acts|అపొస్తలుల కార్యములు|28">Acts (అపొస్తలుల కార్యములు)</option>
-                            <option value="ROM|Romans|రోమీయులకు|16">Romans (రోమీయులకు)</option>
-                            <option value="1CO|1 Corinthians|1 కొరింథీయులకు|16">1 Corinthians (1 కొరింథీయులకు)</option>
-                            <option value="2CO|2 Corinthians|2 కొరింథీయులకు|13">2 Corinthians (2 కొరింథీయులకు)</option>
-                            <option value="GAL|Galatians|గలతీయులకు|6">Galatians (గలతీయులకు)</option>
-                            <option value="EPH|Ephesians|ఎఫెసీయులకు|6">Ephesians (ఎఫెసీయులకు)</option>
-                            <option value="REV|Revelation|ప్రకటన గ్రంథము|22">Revelation (ప్రకటన గ్రంథము)</option>
+                            <option value="MAT|40|Matthew|మత్తయి|28">Matthew (మత్తయి)</option>
+                            <option value="MRK|41|Mark|మార్కు|16">Mark (మార్కు)</option>
+                            <option value="LUK|42|Luke|లూకా|24">Luke (లూకా)</option>
+                            <option value="JHN|43|John|యోహాను|21">John (యోహాను)</option>
+                            <option value="ACT|44|Acts|అపొస్తలుల కార్యములు|28">Acts (అపొస్తలుల కార్యములు)</option>
+                            <option value="ROM|45|Romans|రోమీయులకు|16">Romans (రోమీయులకు)</option>
+                            <option value="1CO|46|1 Corinthians|1 కొరింథీయులకు|16">1 Corinthians (1 కొరింథీయులకు)</option>
+                            <option value="2CO|47|2 Corinthians|2 కొరింథీయులకు|13">2 Corinthians (2 కొరింథీయులకు)</option>
+                            <option value="GAL|48|Galatians|గలతీయులకు|6">Galatians (గలతీయులకు)</option>
+                            <option value="EPH|49|Ephesians|ఎఫెసీయులకు|6">Ephesians (ఎఫెసీయులకు)</option>
+                            <option value="PHP|50|Philippians|ఫిలిప్పీయులకు|4">Philippians (ఫిలిప్పీయులకు)</option>
+                            <option value="COL|51|Colossians|కొలొస్సయులకు|4">Colossians (కొలొస్సయులకు)</option>
+                            <option value="1TH|52|1 Thessalonians|1 థెస్సలొనీకయులకు|5">1 Thessalonians (1 థెస్సలొనీకయులకు)</option>
+                            <option value="1TI|54|1 Timothy|1 తిమోతికి|6">1 Timothy (1 తిమోతికి)</option>
+                            <option value="HEB|58|Hebrews|హెబ్రీయులకు|13">Hebrews (హెబ్రీయులకు)</option>
+                            <option value="JAS|59|James|యాకోబు|5">James (యాకోబు)</option>
+                            <option value="1PE|60|1 Peter|1 పేతురు|5">1 Peter (1 పేతురు)</option>
+                            <option value="1JN|62|1 John|1 యోహాను|5">1 John (1 యోహాను)</option>
+                            <option value="REV|66|Revelation|ప్రకటన గ్రంథము|22">Revelation (ప్రకటన గ్రంథము)</option>
                         </optgroup>
                     </select>
 
@@ -341,10 +406,10 @@
             </div>
         </section>
 
-        <!-- TAB 2: FAMILY ALTAR (Direct PDF Book Viewer) -->
+        <!-- TAB 2: FAMILY ALTAR (Native In-Page Rendered PDF) -->
         <section id="altarTab" class="tab-section">
             <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar - PDF Book)</h2>
-            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read or open in full window):</p>
+            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read directly on this page):</p>
 
             <div class="pdf-box">
                 <div class="pdf-actions">
@@ -354,14 +419,27 @@
                     <a href="family-altar.pdf" download="family-altar.pdf" class="btn">
                         📥 Download PDF File
                     </a>
+                    <span id="pdfLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
                 </div>
 
-                <!-- Embedded PDF Viewer -->
-                <iframe src="family-altar.pdf" class="pdf-frame" title="Family Altar Book"></iframe>
+                <!-- Continuous Scrollable PDF Pages -->
+                <div id="pdfViewerContainer" class="pdf-scroll-canvas-container">
+                    <!-- Pages render here automatically via PDF.js -->
+                </div>
             </div>
         </section>
 
-        <!-- TAB 3: SERMONS -->
+        <!-- TAB 3: WIKI / UPDATES -->
+        <section id="updatesTab" class="tab-section">
+            <h2 class="section-heading">Church Wiki & Live Updates</h2>
+            <p style="margin-bottom: 15px;">Photos, announcements, and special meeting updates:</p>
+
+            <div id="galleryContainer" class="gallery-grid">
+                <div class="loading">Loading recent church updates...</div>
+            </div>
+        </section>
+
+        <!-- TAB 4: SERMONS -->
         <section id="sermonsTab" class="tab-section">
             <h2 class="section-heading">Sermons & YouTube Ministry</h2>
             <div class="grid">
@@ -389,7 +467,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: SONGS -->
+        <!-- TAB 5: SONGS -->
         <section id="songsTab" class="tab-section">
             <h2 class="section-heading">Worship Songs & Hymns</h2>
             <div class="grid">
@@ -405,7 +483,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: CHURCH DETAILS -->
+        <!-- TAB 6: CHURCH DETAILS -->
         <section id="contactTab" class="tab-section">
             <h2 class="section-heading">Lord Jesus Christ Prayer House - Church Details</h2>
             <div class="info-card">
@@ -455,9 +533,10 @@
         <p>&copy; 2026 LORD JESUS CHRIST PRAYER HOUSE. All Rights Reserved.</p>
     </footer>
 
-    <!-- Tab Switching & Bible Script -->
+    <!-- Scripts -->
     <script>
-        // Tab switching function
+        var pdfLoaded = false;
+
         function switchTab(tabId, btnElement) {
             var sections = document.querySelectorAll('.tab-section');
             for (var i = 0; i < sections.length; i++) {
@@ -468,19 +547,58 @@
                 buttons[j].classList.remove('active');
             }
             var target = document.getElementById(tabId);
-            if (target) {
-                target.classList.add('active');
+            if (target) target.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
+
+            if (tabId === 'altarTab' && !pdfLoaded) {
+                renderPdfInPage();
             }
-            if (btnElement) {
-                btnElement.classList.add('active');
+            if (tabId === 'updatesTab') {
+                loadGitHubGallery();
             }
         }
 
-        // Bible Functions
+        // Native PDF.js in-page continuous scroll renderer
+        function renderPdfInPage() {
+            var url = 'family-altar.pdf';
+            var container = document.getElementById('pdfViewerContainer');
+            var statusEl = document.getElementById('pdfLoadingStatus');
+
+            pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
+                pdfLoaded = true;
+                statusEl.innerText = `మొత్తం ${pdfDoc.numPages} పేజీలు లోడ్ చేయబడ్డాయి.`;
+                container.innerHTML = '';
+
+                for (var pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
+                    (function(num) {
+                        pdfDoc.getPage(num).then(function(page) {
+                            var viewport = page.getViewport({ scale: 1.5 });
+                            var canvas = document.createElement('canvas');
+                            canvas.className = 'pdf-page-canvas';
+                            var ctx = canvas.getContext('2d');
+                            canvas.height = viewport.height;
+                            canvas.width = viewport.width;
+
+                            var renderContext = {
+                                canvasContext: ctx,
+                                viewport: viewport
+                            };
+
+                            page.render(renderContext).promise.then(function() {
+                                container.appendChild(canvas);
+                            });
+                        });
+                    })(pageNum);
+                }
+            }).catch(function(err) {
+                statusEl.innerHTML = '<span style="color:#ef4444;">PDF నేరుగా లోడ్ కాలేదు. ఫైల్ పేరు "family-altar.pdf" గా GitHub లో ఉందో లేదో సరిచూడండి.</span>';
+            });
+        }
+
         function onBookChange() {
             var raw = document.getElementById('bookSelect').value;
             var parts = raw.split('|');
-            var totalChapters = parseInt(parts[3]) || 1;
+            var totalChapters = parseInt(parts[4]) || 1;
             
             var chSelect = document.getElementById('chapterSelect');
             chSelect.innerHTML = '';
@@ -497,9 +615,10 @@
             var raw = document.getElementById('bookSelect').value;
             var parts = raw.split('|');
             var code = parts[0];
-            var enName = parts[1];
-            var teName = parts[2];
-            var chapter = document.getElementById('chapterSelect').value || 1;
+            var bookNum = parts[1];
+            var enName = parts[2];
+            var teName = parts[3];
+            var chapter = parseInt(document.getElementById('chapterSelect').value) || 1;
 
             document.getElementById('enTitle').innerText = `English: ${enName} ${chapter}`;
             document.getElementById('teTitle').innerText = `తెలుగు: ${teName} ${chapter}`;
@@ -510,7 +629,7 @@
             enContent.innerHTML = `<div class="loading">Loading English verses...</div>`;
             teContent.innerHTML = `<div class="loading">వచనములు లోడ్ అవుతున్నాయి...</div>`;
 
-            // English Fetch
+            // English
             try {
                 var res = await fetch(`https://bible-api.com/${encodeURIComponent(enName)}+${chapter}?translation=web`);
                 if (res.ok) {
@@ -534,21 +653,34 @@
                 enContent.innerHTML = `<div class="verse-item" id="en-v-1"><span class="verse-num">1</span> In the beginning God created the heavens and the earth.</div>`;
             }
 
-            // Telugu Fetch
+            // High-Speed Direct Telugu Fetch
             try {
-                var teRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://bolls.life/get-chapter/TEL/${code}/${chapter}/`)}`);
+                var teRes = await fetch(`https://cdn.jsdelivr.net/gh/the-bibles/telugu-bible@master/books/${bookNum}.json`);
                 if (teRes.ok) {
-                    var json = await teRes.json();
-                    var verses = JSON.parse(json.contents);
-                    if (Array.isArray(verses) && verses.length > 0) {
-                        teContent.innerHTML = verses.map(function(v) {
+                    var teData = await teRes.json();
+                    var chObj = teData.chapters.find(function(c) { return parseInt(c.chapter) === chapter; });
+                    if (chObj && chObj.verses && chObj.verses.length > 0) {
+                        teContent.innerHTML = chObj.verses.map(function(v) {
                             return `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
                         }).join('');
                         return;
                     }
                 }
-                throw new Error("Fallback");
-            } catch (e) {
+                throw new Error("CDN fallback");
+            } catch (err) {
+                try {
+                    var fallbackRes = await fetch(`https://raw.githubusercontent.com/the-bibles/telugu-bible/master/books/${bookNum}.json`);
+                    if (fallbackRes.ok) {
+                        var fbData = await fallbackRes.json();
+                        var fbCh = fbData.chapters.find(function(c) { return parseInt(c.chapter) === chapter; });
+                        if (fbCh && fbCh.verses) {
+                            teContent.innerHTML = fbCh.verses.map(function(v) {
+                                return `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
+                            }).join('');
+                            return;
+                        }
+                    }
+                } catch(e) {}
                 teContent.innerHTML = `<div class="verse-item" id="te-v-1"><span class="verse-num">1</span> ఆదియందు దేవుడు భూమ్యాకాశములను సృజించెను.</div>`;
             }
         }
@@ -569,6 +701,42 @@
                 teEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 teEl.classList.add('highlight');
             }
+        }
+
+        // Automatic GitHub Gallery Loader
+        async function loadGitHubGallery() {
+            var container = document.getElementById('galleryContainer');
+            try {
+                var res = await fetch('https://api.github.com/repos/sampathVk/Lord-Jesus-Christ-Prayer-House/contents/gallery');
+                if (res.ok) {
+                    var files = await res.json();
+                    var imageFiles = files.filter(function(f) {
+                        return /\.(jpe?g|png|webp|gif)$/i.test(f.name);
+                    });
+
+                    if (imageFiles.length > 0) {
+                        container.innerHTML = imageFiles.map(function(img) {
+                            var cleanName = img.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ");
+                            return `
+                                <div class="gallery-item">
+                                    <a href="${img.download_url}" target="_blank">
+                                        <img src="${img.download_url}" alt="${cleanName}" loading="lazy">
+                                    </a>
+                                    <div class="gallery-caption">${cleanName}</div>
+                                </div>
+                            `;
+                        }).join('');
+                        return;
+                    }
+                }
+            } catch (e) {}
+
+            container.innerHTML = `
+                <div style="grid-column: 1/-1; background: white; padding: 25px; border-radius: 8px; text-align: center; color: #64748b;">
+                    <p style="font-size: 1.05rem; margin-bottom: 8px;">No updates uploaded yet.</p>
+                    <p style="font-size: 0.9rem;">Upload images into a folder named <strong>gallery</strong> in your GitHub repository and they will automatically show here!</p>
+                </div>
+            `;
         }
 
         window.onload = function() {
