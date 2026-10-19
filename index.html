@@ -19,7 +19,7 @@
         header { background: #0b1120; color: white; padding: 1rem 5%; text-align: center; border-bottom: 1px solid #1e293b; }
         header h1 { font-size: 1.35rem; letter-spacing: 0.8px; font-weight: 700; }
 
-        /* Hero Banner with Custom Background Image (No corner eagle or cloud images) */
+        /* Hero Banner */
         .hero { 
             position: relative; 
             background-color: #080d1a;
@@ -308,7 +308,7 @@
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
     </header>
 
-    <!-- Banner (Eagle and Cloud images removed) -->
+    <!-- Banner -->
     <div class="hero">
         <div class="hero-bg"></div>
 
@@ -352,7 +352,7 @@
             <div class="intro-quote-card">
                 <h3>📖 The Pillar Scripture</h3>
                 <p>"యేసుక్రీస్తు నిన్న, నేడు, ఒక్కటేరీతిగా ఉన్నాడు; అవును యుగయుగములకును ఒక్కటేరీతిగా ఉండును."</p>
-                <cite>— హెబ్రీయులకు 13:8[span_16](start_span)[span_16](end_span)</cite>
+                <cite>— హెబ్రీయులకు 13:8</cite>
             </div>
 
             <div class="intro-quote-card" style="border-left-color: #10b981;">
@@ -380,7 +380,7 @@
         <!-- TAB 2: END TIME MESSAGES BY BR. BRANHAM (In-Page Reader) -->
         <section id="messageTab" class="tab-section">
             <h2 class="section-heading">End Time Messages By Br. Branham</h2>
-            <p style="margin-bottom: 18px;">Click on any message below to read it directly on this page[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span):</p>
+            <p style="margin-bottom: 18px;">Click on any message below to read it directly on this page:</p>
 
             <!-- List of Messages Matching PDF Names Exactly -->
             <div class="msg-list">
@@ -409,10 +409,10 @@
             <!-- In-Page Reader Container for Message Books -->
             <div class="pdf-box">
                 <div class="pdf-actions">
-                    <a id="msgFullLink" href="54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf" target="_blank" class="btn btn-green">
+                    <a id="msgFullLink" href="#" target="_blank" class="btn btn-green">
                         📖 Open In New Window ↗
                     </a>
-                    <a id="msgDownloadLink" href="54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf" download class="btn">
+                    <a id="msgDownloadLink" href="#" download class="btn">
                         📥 Download Message PDF
                     </a>
                     <span id="msgLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
@@ -611,6 +611,14 @@
     <script>
         var altarPdfLoaded = false;
         var currentLoadedMsg = '';
+        var renderTokens = {};
+
+        // Encodes characters including '#', spaces, and Unicode Telugu scripts safely
+        function encodePdfUrl(filename) {
+            return filename.split('/').map(function(part) {
+                return encodeURIComponent(part);
+            }).join('/');
+        }
 
         function switchTab(tabId, btnElement) {
             var sections = document.querySelectorAll('.tab-section');
@@ -637,51 +645,75 @@
             }
         }
 
-        // Generic In-Page PDF Canvas Renderer
-        function renderPdfInPage(pdfUrl, containerId, statusId) {
+        // Sequential, memory-safe in-page PDF renderer with cancel-token protection
+        async function renderPdfInPage(pdfUrl, containerId, statusId) {
             var container = document.getElementById(containerId);
             var statusEl = document.getElementById(statusId);
-            statusEl.innerText = 'పుస్తక పేజీలు లోడ్ అవుతున్నాయి...';
+
+            renderTokens[containerId] = (renderTokens[containerId] || 0) + 1;
+            var currentToken = renderTokens[containerId];
+
+            statusEl.innerHTML = '<span style="color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>';
             container.innerHTML = '';
 
-            pdfjsLib.getDocument(encodeURI(pdfUrl)).promise.then(function(pdfDoc) {
-                statusEl.innerText = `మొత్తం ${pdfDoc.numPages} పేజీలు లోడ్ చేయబడ్డాయి.`;
+            try {
+                var safeUrl = encodePdfUrl(pdfUrl);
+                var loadingTask = pdfjsLib.getDocument(safeUrl);
+                var pdfDoc = await loadingTask.promise;
+
+                if (currentToken !== renderTokens[containerId]) return;
+
+                statusEl.innerText = `మొత్తం ${pdfDoc.numPages} పేజీలు. లోడ్ అవుతున్నాయి...`;
 
                 for (var pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
-                    (function(num) {
-                        pdfDoc.getPage(num).then(function(page) {
-                            var viewport = page.getViewport({ scale: 1.5 });
-                            var canvas = document.createElement('canvas');
-                            canvas.className = 'pdf-page-canvas';
-                            var ctx = canvas.getContext('2d');
-                            canvas.height = viewport.height;
-                            canvas.width = viewport.width;
+                    if (currentToken !== renderTokens[containerId]) return;
 
-                            var renderContext = {
-                                canvasContext: ctx,
-                                viewport: viewport
-                            };
+                    var page = await pdfDoc.getPage(pageNum);
+                    var viewport = page.getViewport({ scale: 1.5 });
 
-                            page.render(renderContext).promise.then(function() {
-                                container.appendChild(canvas);
-                            });
-                        });
-                    })(pageNum);
+                    var canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page-canvas';
+                    var ctx = canvas.getContext('2d');
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    container.appendChild(canvas);
+
+                    await page.render({
+                        canvasContext: ctx,
+                        viewport: viewport
+                    }).promise;
+
+                    if (pageNum % 5 === 0 || pageNum === pdfDoc.numPages) {
+                        statusEl.innerText = `పేజీలు లోడ్ అవుతున్నాయి: ${pageNum} / ${pdfDoc.numPages}`;
+                    }
                 }
-            }).catch(function(err) {
-                statusEl.innerHTML = `<span style="color:#ef4444;">PDF లోడ్ కాలేదు. "${pdfUrl}" ఫైల్ GitHub లో ఉందో లేదో సరిచూడండి.</span>`;
-            });
+
+                statusEl.innerText = `మొత్తం ${pdfDoc.numPages} పేజీలు విజయవంతంగా లోడ్ అయ్యాయి.`;
+            } catch (err) {
+                console.error("PDF load error:", err);
+                statusEl.innerHTML = `<span style="color:#ef4444;">PDF లోడ్ కాలేదు. "${pdfUrl}" ఫైల్ రిపోజిటరీలో సరిగ్గా ఉందో లేదో తనిఖీ చేయండి.</span>`;
+            }
         }
 
         // Handler for End Time Message Book selection
         function loadMessagePdf(fileName, el) {
-            document.querySelectorAll('.msg-item').forEach(function(item) { item.classList.remove('active'); });
+            document.querySelectorAll('.msg-item').forEach(function(item) { 
+                item.classList.remove('active'); 
+            });
             if (el) el.classList.add('active');
 
             currentLoadedMsg = fileName;
-            document.getElementById('msgFullLink').href = encodeURI(fileName);
-            document.getElementById('msgDownloadLink').href = encodeURI(fileName);
-            document.getElementById('msgDownloadLink').setAttribute('download', fileName);
+
+            var safeUrl = encodePdfUrl(fileName);
+            var fullLink = document.getElementById('msgFullLink');
+            var downloadLink = document.getElementById('msgDownloadLink');
+
+            if (fullLink) fullLink.href = safeUrl;
+            if (downloadLink) {
+                downloadLink.href = safeUrl;
+                downloadLink.setAttribute('download', fileName);
+            }
 
             renderPdfInPage(fileName, 'msgViewerContainer', 'msgLoadingStatus');
         }
