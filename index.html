@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,44 +9,54 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { color: #333; line-height: 1.6; background-color: #f8f9fa; }
         
-        /* Header & Nav */
-        header { background: #1a252f; color: white; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        header h1 { font-size: 1.25rem; letter-spacing: 0.5px; }
-        nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; transition: color 0.2s; }
-        nav a:hover { color: #3498db; }
+        /* Header */
+        header { background: #1a252f; color: white; padding: 1.2rem 5%; text-align: center; }
+        header h1 { font-size: 1.5rem; letter-spacing: 0.5px; }
 
-        /* Hero */
-        .hero { background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; text-align: center; padding: 75px 20px; }
-        .hero h2 { font-size: 2.3rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.15rem; margin-bottom: 20px; font-style: italic; }
-        .btn { background: #3498db; color: white; padding: 9px 18px; text-decoration: none; border-radius: 5px; display: inline-block; font-weight: 500; border: none; cursor: pointer; }
+        /* Hero Banner */
+        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; text-align: center; padding: 60px 20px 40px; }
+        .hero h2 { font-size: 2.2rem; margin-bottom: 8px; }
+        .hero p { font-size: 1.15rem; margin-bottom: 25px; font-style: italic; color: #ecf0f1; }
+
+        /* Centered Middle Tabs Navigation */
+        .tabs-wrapper { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
+        .tab-btn { background: rgba(255, 255, 255, 0.15); border: 2px solid #ffffff; color: white; padding: 10px 24px; border-radius: 30px; font-size: 1rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.25s ease; }
+        .tab-btn:hover, .tab-btn.active { background: #3498db; border-color: #3498db; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+
+        /* Main Container */
+        .container { max-width: 1150px; margin: 30px auto; padding: 0 20px; }
+        .tab-section { display: none; }
+        .tab-section.active { display: block; animation: fadeIn 0.3s ease-in; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2.section-heading { border-bottom: 3px solid #3498db; display: inline-block; padding-bottom: 6px; margin-bottom: 25px; color: #2c3e50; }
+
+        /* Buttons & Utilities */
+        .btn { background: #3498db; color: white; padding: 9px 18px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s; }
         .btn:hover { background: #2980b9; }
         .btn-yt { background: #cc0000; color: white; }
         .btn-yt:hover { background: #aa0000; }
+        .btn-outline { background: transparent; border: 2px solid #3498db; color: #3498db; }
+        .btn-outline:hover { background: #3498db; color: white; }
 
-        /* Container */
-        .container { max-width: 1150px; margin: 40px auto; padding: 0 20px; }
-        section { margin-bottom: 60px; scroll-margin-top: 80px; }
-        section h2 { border-bottom: 3px solid #3498db; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; color: #2c3e50; }
-
-        /* Grid */
+        /* Sermons & Video Cards */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); display: flex; flex-direction: column; justify-content: space-between; }
+        .card { background: white; padding: 22px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); display: flex; flex-direction: column; justify-content: space-between; }
         .card h3 { margin-bottom: 10px; color: #2c3e50; font-size: 1.15rem; }
-
-        /* Video Embed */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin: 12px 0; }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin: 12px 0; background: #000; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Bible Selector Bar */
+        /* Dual Bible Reader */
         .bible-toolbar { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
         .bible-controls { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
-        .bible-controls select, .bible-controls input { padding: 9px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 0.95rem; }
-
-        /* Side-by-Side Dual Bible Panes */
+        .bible-controls select, .bible-controls input { padding: 9px 14px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
         .bible-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .bible-pane { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; }
-        .pane-header { background: #2c3e50; color: white; padding: 12px 18px; font-weight: 600; font-size: 1.05rem; }
+        .pane-header { background: #2c3e50; color: white; padding: 14px 20px; font-weight: 600; font-size: 1.05rem; }
         .pane-content { padding: 24px; height: 550px; overflow-y: auto; line-height: 1.9; font-size: 1.05rem; background: #fff; }
         .verse-item { margin-bottom: 14px; }
         .verse-num { font-weight: bold; color: #2980b9; margin-right: 8px; font-size: 0.95rem; }
@@ -53,78 +64,42 @@
 
         /* Footer */
         footer { background: #1a252f; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
+        footer p { margin-bottom: 6px; }
 
         @media (max-width: 850px) {
-            header { flex-direction: column; text-align: center; gap: 10px; }
-            nav a { margin: 0 10px; }
             .bible-container { grid-template-columns: 1fr; }
-            .bible-controls { flex-direction: column; align-items: stretch; }
+            .tabs-wrapper { gap: 8px; }
+            .tab-btn { padding: 8px 16px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Top Header -->
     <header>
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
-        <nav>
-            <a href="#sermons">Sermons & Playlist</a>
-            <a href="#bible">Holy Bible</a>
-            <a href="#songs">Songs</a>
-            <a href="#contact">Contact</a>
-        </nav>
     </header>
 
-    <!-- Banner -->
+    <!-- Banner with Middle Navigation Tabs -->
     <div class="hero">
         <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
         <p>"Only believe, all things are possible." — Mark 9:23</p>
-        <div>
-            <a href="#bible" class="btn" style="background: white; color: #1a252f; font-weight: bold;">Read Scripture Now (తెలుగు & English)</a>
+
+        <!-- Centered Navigation Tabs -->
+        <div class="tabs-wrapper">
+            <button class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible (తెలుగు & Eng)</button>
+            <button class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons & Messages</button>
+            <button class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Worship Songs</button>
+            <button class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
         </div>
     </div>
 
     <div class="container">
 
-        <!-- Sermons & Playlists -->
-        <section id="sermons">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                <h2 style="margin-bottom: 0;">Sermons & YouTube Playlists</h2>
-                <a href="https://youtube.com/@ksudhakar9743/playlists" target="_blank" class="btn btn-yt">View All Playlists on YouTube ↗</a>
-            </div>
-            
-            <div class="grid">
-                <div class="card">
-                    <div>
-                        <h3>Channel Videos & Playlists</h3>
-                        <p style="font-size: 0.9rem; color: #666;">Browse sermons, prayer messages, and special meetings:</p>
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/videoseries?list=UUksudhakar9743" title="YouTube Playlist" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-top: 10px;">
-                        <a href="https://youtube.com/@ksudhakar9743/videos" target="_blank" class="btn btn-yt" style="flex: 1; text-align: center;">Recent Videos ↗</a>
-                        <a href="https://youtube.com/@ksudhakar9743/playlists" target="_blank" class="btn" style="flex: 1; text-align: center;">Playlists ↗</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <h3>Sunday Worship & Message</h3>
-                        <p style="font-size: 0.9rem; color: #666;">Speaker: Brother Sudhakar</p>
-                        <div class="video-container">
-                            <iframe src="https://www.youtube.com/embed/WYO4Hou3vDE" title="Sunday Message" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <a href="https://youtube.com/@ksudhakar9743" target="_blank" class="btn" style="text-align: center; margin-top: 10px;">Open Channel (@ksudhakar9743) ↗</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Live Bible Reader on Page -->
-        <section id="bible">
-            <h2>Holy Bible (పరిశుద్ధ గ్రంథము & NKJV / English)</h2>
-            <p style="margin-bottom: 15px;">Select any Scripture and Chapter below to read directly inside the page in both English and Telugu side-by-side.</p>
+        <!-- TAB 1: SIDE-BY-SIDE DUAL BIBLE -->
+        <section id="bibleTab" class="tab-section active">
+            <h2 class="section-heading">Holy Bible (పరిశుద్ధ గ్రంథము & NKJV / English)</h2>
+            <p style="margin-bottom: 15px;">Read and compare verses directly side-by-side in Telugu and English:</p>
 
             <div class="bible-toolbar">
                 <div class="bible-controls">
@@ -205,7 +180,7 @@
                     <label for="chapterInput"><strong>Chapter:</strong></label>
                     <input type="number" id="chapterInput" value="1" min="1" max="150" style="width: 75px;" onchange="loadChapter()">
 
-                    <button class="btn" onclick="loadChapter()">Read Passage</button>
+                    <button class="btn" onclick="loadChapter()">Open Chapter</button>
                 </div>
             </div>
 
@@ -214,12 +189,12 @@
                 <div class="bible-pane">
                     <div class="pane-header" id="enTitle">English: Genesis 1</div>
                     <div class="pane-content" id="enContent">
-                        <div class="loading">Loading verses...</div>
+                        <div class="loading">Loading English verses...</div>
                     </div>
                 </div>
 
                 <div class="bible-pane">
-                    <div class="pane-header" id="teTitle">తెలుగు: ఆదికాండము 1</div>
+                    <div class="pane-header" id="teTitle">తెలుగు పరిశుద్ధ గ్రంథము: ఆదికాండము 1</div>
                     <div class="pane-content" id="teContent">
                         <div class="loading">వచనములు లోడ్ అవుతున్నాయి...</div>
                     </div>
@@ -227,15 +202,49 @@
             </div>
         </section>
 
-        <!-- Worship Songs -->
-        <section id="songs">
-            <h2>Worship Songs & Hymns</h2>
+        <!-- TAB 2: SERMONS & YOUTUBE -->
+        <section id="sermonsTab" class="tab-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
+                <h2 class="section-heading" style="margin-bottom: 0;">Sermons & YouTube Ministry</h2>
+                <a href="https://youtube.com/@ksudhakar9743/videos" target="_blank" class="btn btn-yt">View All Videos on Channel ↗</a>
+            </div>
+
+            <div class="grid">
+                <!-- Video 1 -->
+                <div class="card">
+                    <div>
+                        <h3>Sunday Worship Message</h3>
+                        <p style="font-size: 0.9rem; color: #666;">Speaker: Brother Sudhakar</p>
+                        <div class="video-container">
+                            <iframe src="https://www.youtube-nocookie.com/embed/WYO4Hou3vDE" title="Sunday Worship" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <a href="https://youtube.com/@ksudhakar9743" target="_blank" class="btn" style="text-align: center; margin-top: 10px;">Watch on YouTube ↗</a>
+                </div>
+
+                <!-- Channel Playlists Box -->
+                <div class="card" style="background: #eef5fa;">
+                    <div>
+                        <h3>All Playlists & Recordings</h3>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">Watch church recordings, fasting prayers, youth ministry sessions, and message tapes directly on YouTube.</p>
+                    </div>
+                    <div style="margin-top: 25px;">
+                        <a href="https://youtube.com/@ksudhakar9743/playlists" target="_blank" class="btn btn-yt" style="width: 100%; text-align: center; margin-bottom: 10px;">Open All Playlists ↗</a>
+                        <a href="https://youtube.com/@ksudhakar9743?sub_confirmation=1" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Subscribe to Channel</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: WORSHIP SONGS -->
+        <section id="songsTab" class="tab-section">
+            <h2 class="section-heading">Worship Songs & Hymns</h2>
             <div class="grid">
                 <div class="card">
                     <div>
                         <h3>Amazing Grace / కృప</h3>
                         <p><strong>Category:</strong> Worship & Praise</p>
-                        <audio controls style="width: 100%; margin-top: 10px;">
+                        <audio controls style="width: 100%; margin-top: 12px;">
                             <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
                             Your browser does not support audio.
                         </audio>
@@ -245,7 +254,7 @@
                     <div>
                         <h3>10,000 Reasons (Bless The Lord)</h3>
                         <p><strong>Category:</strong> Choir & Youth</p>
-                        <audio controls style="width: 100%; margin-top: 10px;">
+                        <audio controls style="width: 100%; margin-top: 12px;">
                             <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
                             Your browser does not support audio.
                         </audio>
@@ -254,18 +263,38 @@
             </div>
         </section>
 
+        <!-- TAB 4: CHURCH DETAILS -->
+        <section id="contactTab" class="tab-section">
+            <h2 class="section-heading">Lord Jesus Christ Prayer House</h2>
+            <div class="card">
+                <h3>About Our Church</h3>
+                <p style="margin-bottom: 12px;">Welcome to <strong>LORD JESUS CHRIST PRAYER HOUSE</strong>. Join us for weekly services, prayer meetings, and spiritual fellowship.</p>
+                <p><strong>YouTube:</strong> <a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #3498db;">@ksudhakar9743</a></p>
+                <p><strong>Services:</strong> Sunday Worship & Weekly Prayer Fellowships</p>
+            </div>
+        </section>
+
     </div>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <p><strong>LORD JESUS CHRIST PRAYER HOUSE</strong></p>
         <p>YouTube Ministry: <a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #3498db; text-decoration: none;">@ksudhakar9743</a></p>
-        <p>Fellowship, Word, and Prayer | All Are Welcome</p>
         <p>&copy; 2026 LORD JESUS CHRIST PRAYER HOUSE. All Rights Reserved.</p>
     </footer>
 
-    <!-- In-Page Live Scripture Engine -->
+    <!-- Scripts -->
     <script>
+        // Tab switching logic
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            if (element) element.classList.add('active');
+        }
+
+        // Live Dual Scripture Loader
         async function loadChapter() {
             const rawVal = document.getElementById('bookSelect').value;
             const [code, bookNum, enName, teName, maxCh] = rawVal.split('|');
@@ -275,70 +304,4 @@
             if (chapter > parseInt(maxCh)) chapter = parseInt(maxCh);
             document.getElementById('chapterInput').value = chapter;
 
-            // Update titles
-            document.getElementById('enTitle').innerText = `English: ${enName} ${chapter}`;
-            document.getElementById('teTitle').innerText = `తెలుగు: ${teName} ${chapter}`;
-
-            const enContent = document.getElementById('enContent');
-            const teContent = document.getElementById('teContent');
-
-            enContent.innerHTML = `<div class="loading">Loading ${enName} chapter ${chapter}...</div>`;
-            teContent.innerHTML = `<div class="loading">${teName} ${chapter}వ అధ్యాయము లోడ్ అవుతున్నది...</div>`;
-
-            try {
-                // Fetch English verses from open Bible API
-                const enResponse = await fetch(`https://bible-api.com/${encodeURIComponent(enName)}+${chapter}?translation=web`);
-                let enVerses = [];
-                if (enResponse.ok) {
-                    const data = await enResponse.json();
-                    enVerses = data.verses || [];
-                }
-
-                // Fetch Telugu Bible data from the GitHub raw dataset
-                const teResponse = await fetch(`https://cdn.jsdelivr.net/gh/the-bibles/telugu-bible@master/books/${bookNum}.json`);
-                let teVerses = [];
-                if (teResponse.ok) {
-                    const data = await teResponse.json();
-                    const currentChapter = data.chapters?.find(c => parseInt(c.chapter) === chapter);
-                    if (currentChapter && currentChapter.verses) {
-                        teVerses = currentChapter.verses;
-                    }
-                }
-
-                // Render English
-                if (enVerses.length > 0) {
-                    enContent.innerHTML = enVerses.map(v => 
-                        `<div class="verse-item"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`
-                    ).join('');
-                } else {
-                    enContent.innerHTML = `<div class="loading">Scripture text is available for this chapter. Please select another passage or chapter.</div>`;
-                }
-
-                // Render Telugu
-                if (teVerses.length > 0) {
-                    teContent.innerHTML = teVerses.map(v => 
-                        `<div class="verse-item"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`
-                    ).join('');
-                } else {
-                    // Fallback using free Telugu Bible repository endpoint
-                    teContent.innerHTML = `
-                        <div style="padding: 15px; background: #fdfefe; border: 1px solid #e1e8ed; border-radius: 6px;">
-                            <h4 style="color: #2c3e50; margin-bottom: 8px;">${teName} అధ్యాయం ${chapter}</h4>
-                            <p>వచనములు క్రింది ఫ్రేమ్ ద్వారా నేరుగా చదవవచ్చును:</p>
-                            <iframe src="https://bolls.life/TEL/${code}/${chapter}/" style="width: 100%; height: 420px; border: none; margin-top: 10px; border-radius: 4px;"></iframe>
-                        </div>
-                    `;
-                }
-
-            } catch (err) {
-                enContent.innerHTML = `<div class="verse-item"><span class="verse-num">1</span> In the beginning God created the heavens and the earth.</div>`;
-                teContent.innerHTML = `<div class="verse-item"><span class="verse-num">1</span> ఆదియందు దేవుడు భూమ్యాకాశములను సృజించెను.</div>`;
-            }
-        }
-
-        window.onload = function() {
-            loadChapter();
-        };
-    </script>
-</body>
-</html>
+            // Update Title
