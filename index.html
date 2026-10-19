@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,84 +12,157 @@
         header { background: #1a252f; color: white; padding: 1.2rem 5%; text-align: center; }
         header h1 { font-size: 1.5rem; letter-spacing: 0.5px; }
 
-        /* Hero Banner */
-        .hero { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80') center/cover; color: white; text-align: center; padding: 60px 20px 40px; }
-        .hero h2 { font-size: 2.2rem; margin-bottom: 8px; }
-        .hero p { font-size: 1.15rem; margin-bottom: 25px; font-style: italic; color: #ecf0f1; }
+        /* Hero Banner with Corner Images */
+        .hero { 
+            position: relative; 
+            background: linear-gradient(rgba(10, 20, 30, 0.82), rgba(10, 20, 30, 0.85)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80') center/cover; 
+            color: white; 
+            text-align: center; 
+            padding: 50px 20px 35px; 
+            overflow: hidden; 
+        }
 
-        /* Centered Middle Tabs Navigation */
-        .tabs-wrapper { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 15px; }
-        .tab-btn { background: rgba(255, 255, 255, 0.15); border: 2px solid #ffffff; color: white; padding: 10px 24px; border-radius: 30px; font-size: 1rem; font-weight: 600; text-decoration: none; cursor: pointer; transition: all 0.25s ease; }
-        .tab-btn:hover, .tab-btn.active { background: #3498db; border-color: #3498db; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        /* Top-Left Corner: Supernatural Cloud */
+        .banner-corner-left {
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            width: 110px;
+            max-width: 22vw;
+            height: auto;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.45));
+            pointer-events: none;
+            z-index: 1;
+        }
 
-        /* Main Container */
+        /* Top-Right Corner: Flying Eagle */
+        .banner-corner-right {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            width: 110px;
+            max-width: 22vw;
+            height: auto;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.35)) brightness(1.2);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .hero h2 { font-size: 2.1rem; margin-bottom: 8px; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+        .hero p { font-size: 1.15rem; margin-bottom: 22px; font-style: italic; color: #ecf0f1; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+
+        /* Navigation Tabs */
+        .tabs-wrapper { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 15px; }
+        .tab-btn { background: rgba(255, 255, 255, 0.18); border: 2px solid #ffffff; color: white; padding: 10px 20px; border-radius: 30px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease; }
+        .tab-btn:hover, .tab-btn.active { background: #3498db; border-color: #3498db; color: #fff; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.25); }
+
+        /* Container */
         .container { max-width: 1150px; margin: 30px auto; padding: 0 20px; }
         .tab-section { display: none; }
-        .tab-section.active { display: block; animation: fadeIn 0.3s ease-in; }
+        .tab-section.active { display: block; animation: fadeIn 0.25s ease-in; }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
+            from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         h2.section-heading { border-bottom: 3px solid #3498db; display: inline-block; padding-bottom: 6px; margin-bottom: 25px; color: #2c3e50; }
 
-        /* Buttons & Utilities */
-        .btn { background: #3498db; color: white; padding: 9px 18px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; border: none; cursor: pointer; transition: background 0.2s; }
+        .btn { background: #3498db; color: white; padding: 9px 18px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; border: none; cursor: pointer; }
         .btn:hover { background: #2980b9; }
         .btn-yt { background: #cc0000; color: white; }
         .btn-yt:hover { background: #aa0000; }
         .btn-outline { background: transparent; border: 2px solid #3498db; color: #3498db; }
         .btn-outline:hover { background: #3498db; color: white; }
 
-        /* Sermons & Video Cards */
+        /* Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
         .card { background: white; padding: 22px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); display: flex; flex-direction: column; justify-content: space-between; }
         .card h3 { margin-bottom: 10px; color: #2c3e50; font-size: 1.15rem; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin: 12px 0; background: #000; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Dual Bible Reader */
-        .bible-toolbar { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
-        .bible-controls { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
-        .bible-controls select, .bible-controls input { padding: 9px 14px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+        /* Bible Selector Controls */
+        .bible-toolbar { background: white; padding: 18px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
+        .bible-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .bible-controls select { padding: 9px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+
+        /* Side-by-Side Dual Bible Panes */
         .bible-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .bible-pane { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; }
-        .pane-header { background: #2c3e50; color: white; padding: 14px 20px; font-weight: 600; font-size: 1.05rem; }
-        .pane-content { padding: 24px; height: 550px; overflow-y: auto; line-height: 1.9; font-size: 1.05rem; background: #fff; }
-        .verse-item { margin-bottom: 14px; }
+        .pane-header { background: #2c3e50; color: white; padding: 12px 18px; font-weight: 600; font-size: 1rem; }
+        .pane-content { padding: 20px; height: 580px; overflow-y: auto; line-height: 1.9; font-size: 1.05rem; background: #fff; scroll-behavior: smooth; }
+        .verse-item { margin-bottom: 12px; padding: 4px 6px; border-radius: 4px; transition: background 0.3s; }
+        .verse-item.highlight { background-color: #fff9c4; }
         .verse-num { font-weight: bold; color: #2980b9; margin-right: 8px; font-size: 0.95rem; }
         .loading { color: #7f8c8d; font-style: italic; padding: 20px 0; }
+
+        /* Family Altar */
+        .altar-picker { background: white; padding: 18px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 25px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .altar-picker select { padding: 9px 14px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+        .altar-viewer { max-height: 800px; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 25px; }
+        .altar-page { background: #ffffff; border: 1px solid #e1e8ed; border-radius: 10px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.04); }
+        .altar-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #3498db; padding-bottom: 10px; margin-bottom: 16px; }
+        .altar-title-grp h3 { font-size: 1.3rem; color: #1a252f; margin-bottom: 2px; }
+        .altar-title-grp span { font-size: 0.85rem; color: #7f8c8d; font-weight: bold; }
+        .altar-date-badge { background: #eaf2f8; color: #2980b9; border: 1px solid #bce1f7; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.95rem; }
+        .altar-topic { font-size: 1.25rem; font-weight: bold; color: #c0392b; margin-bottom: 10px; }
+        .altar-verse { background: #fdf7e7; border-left: 4px solid #f39c12; padding: 12px 16px; margin-bottom: 16px; font-style: italic; font-weight: 500; font-size: 0.98rem; color: #5d4037; border-radius: 0 6px 6px 0; }
+        .altar-body { font-size: 1.05rem; line-height: 1.95; color: #2c3e50; text-align: justify; margin-bottom: 15px; }
+        .altar-footer { border-top: 1px dashed #ccd1d9; padding-top: 10px; font-size: 0.9rem; color: #555; display: flex; justify-content: space-between; flex-wrap: wrap; }
 
         /* Footer */
         footer { background: #1a252f; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
         footer p { margin-bottom: 6px; }
 
         @media (max-width: 850px) {
+            .banner-corner-left { width: 75px; left: 8px; top: 8px; }
+            .banner-corner-right { width: 75px; right: 8px; top: 8px; }
+            .hero h2 { font-size: 1.5rem; }
             .bible-container { grid-template-columns: 1fr; }
             .tabs-wrapper { gap: 8px; }
-            .tab-btn { padding: 8px 16px; font-size: 0.9rem; }
+            .tab-btn { padding: 8px 14px; font-size: 0.88rem; }
+            .altar-page { padding: 20px 15px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Header -->
+    <!-- Header -->
     <header>
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
     </header>
 
-    <!-- Banner with Middle Navigation Tabs -->
+    <!-- Banner & Top-Corner Images -->
     <div class="hero">
-        <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
-        <p>"Only believe, all things are possible." — Mark 9:23</p>
+        <!-- Top-Left Corner Cloud -->
+        <img src="cloud.jpg" alt="Supernatural Cloud" class="banner-corner-left" onerror="this.src='https://raw.githubusercontent.com/the-bibles/telugu-bible/master/assets/cloud.jpg'">
 
-        <!-- Centered Navigation Tabs -->
-        <div class="tabs-wrapper">
-            <button class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible (తెలుగు & Eng)</button>
-            <button class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons & Messages</button>
-            <button class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Worship Songs</button>
-            <button class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
+        <!-- Top-Right Corner Eagle -->
+        <img src="eagle.jpg" alt="Flying Eagle" class="banner-corner-right" onerror="this.src='https://raw.githubusercontent.com/the-bibles/telugu-bible/master/assets/eagle.jpg'">
+
+        <div class="hero-content">
+            <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
+            <p>"Only believe, all things are possible." — Mark 9:23</p>
+
+            <div class="tabs-wrapper">
+                <button class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible (తెలుగు & Eng)</button>
+                <button class="tab-btn" onclick="switchTab('altarTab', this)">🔥 కుటుంబ బలిపీఠము (Family Altar)</button>
+                <button class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons & Messages</button>
+                <button class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Worship Songs</button>
+                <button class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
+            </div>
         </div>
     </div>
 
@@ -98,98 +170,55 @@
 
         <!-- TAB 1: SIDE-BY-SIDE DUAL BIBLE -->
         <section id="bibleTab" class="tab-section active">
-            <h2 class="section-heading">Holy Bible (పరిశుద్ధ గ్రంథము & NKJV / English)</h2>
-            <p style="margin-bottom: 15px;">Read and compare verses directly side-by-side in Telugu and English:</p>
+            <h2 class="section-heading">Holy Bible (పరిశుద్ధ గ్రంథము & English NKJV/WEB)</h2>
+            <p style="margin-bottom: 15px;">Select book, chapter, and verse to read side-by-side:</p>
 
             <div class="bible-toolbar">
                 <div class="bible-controls">
-                    <label for="bookSelect"><strong>Select Scripture:</strong></label>
-                    <select id="bookSelect" onchange="loadChapter()">
+                    <label for="bookSelect"><strong>Book:</strong></label>
+                    <select id="bookSelect" onchange="onBookChange()">
                         <optgroup label="Old Testament (పాత నిబంధన)">
-                            <option value="GEN|01|Genesis|ఆదికాండము|50" selected>Genesis (ఆదికాండము)</option>
-                            <option value="EXO|02|Exodus|నిర్గమకాండము|40">Exodus (నిర్గమకాండము)</option>
-                            <option value="LEV|03|Leviticus|లేవీయకాండము|27">Leviticus (లేవీయకాండము)</option>
-                            <option value="NUM|04|Numbers|సంఖ్యాకాండము|36">Numbers (సంఖ్యాకాండము)</option>
-                            <option value="DEU|05|Deuteronomy|ద్వితీయోపదేశకాండము|34">Deuteronomy (ద్వితీయోపదేశకాండము)</option>
-                            <option value="JOS|06|Joshua|యెహోషువ|24">Joshua (యెహోషువ)</option>
-                            <option value="JDG|07|Judges|న్యాయాధిపతులు|21">Judges (న్యాయాధిపతులు)</option>
-                            <option value="RUT|08|Ruth|రూతు|4">Ruth (రూతు)</option>
-                            <option value="1SA|09|1 Samuel|1 సమూయేలు|31">1 Samuel (1 సమూయేలు)</option>
-                            <option value="2SA|10|2 Samuel|2 సమూయేలు|24">2 Samuel (2 సమూయేలు)</option>
-                            <option value="1KI|11|1 Kings|1 రాజులు|22">1 Kings (1 రాజులు)</option>
-                            <option value="2KI|12|2 Kings|2 రాజులు|25">2 Kings (2 రాజులు)</option>
-                            <option value="1CH|13|1 Chronicles|1 దినవృత్తాంతములు|29">1 Chronicles (1 దినవృత్తాంతములు)</option>
-                            <option value="2CH|14|2 Chronicles|2 దినవృత్తాంతములు|36">2 Chronicles (2 దినవృత్తాంతములు)</option>
-                            <option value="EZR|15|Ezra|ఎజ్రా|10">Ezra (ఎజ్రా)</option>
-                            <option value="NEH|16|Nehemiah|నెహెమ్యా|13">Nehemiah (నెహెమ్యా)</option>
-                            <option value="EST|17|Esther|ఎస్తేరు|10">Esther (ఎస్తేరు)</option>
-                            <option value="JOB|18|Job|యోబు|42">Job (యోబు)</option>
-                            <option value="PSA|19|Psalms|కీర్తనలు|150">Psalms (కీర్తనలు)</option>
-                            <option value="PRO|20|Proverbs|సామెతలు|31">Proverbs (సామెతలు)</option>
-                            <option value="ECC|21|Ecclesiastes|ప్రసంగి|12">Ecclesiastes (ప్రసంగి)</option>
-                            <option value="SNG|22|Song of Solomon|పరమగీతము|8">Song of Solomon (పరమగీతము)</option>
-                            <option value="ISA|23|Isaiah|యెషయా|66">Isaiah (యెషయా)</option>
-                            <option value="JER|24|Jeremiah|యిర్మీయా|52">Jeremiah (యిర్మీయా)</option>
-                            <option value="LAM|25|Lamentations|విలాపవాక్యములు|5">Lamentations (విలాపవాక్యములు)</option>
-                            <option value="EZK|26|Ezekiel|యెహెజ్కేలు|48">Ezekiel (యెహెజ్కేలు)</option>
-                            <option value="DAN|27|Daniel|దానియేలు|12">Daniel (దానియేలు)</option>
-                            <option value="HOS|28|Hosea|హోషేయ|14">Hosea (హోషేయ)</option>
-                            <option value="JOL|29|Joel|యోవేలు|3">Joel (యోవేలు)</option>
-                            <option value="AMO|30|Amos|ఆమోసు|9">Amos (ఆమోసు)</option>
-                            <option value="OBA|31|Obadiah|ఓబద్యా|1">Obadiah (ఓబద్యా)</option>
-                            <option value="JON|32|Jonah|యోనా|4">Jonah (యోనా)</option>
-                            <option value="MIC|33|Micah|మీకా|7">Micah (మీకా)</option>
-                            <option value="NAM|34|Nahum|నహూము|3">Nahum (నహూము)</option>
-                            <option value="HAB|35|Habakkuk|హబక్కూకు|3">Habakkuk (హబక్కూకు)</option>
-                            <option value="ZEP|36|Zephaniah|జెఫన్యా|3">Zephaniah (జెఫన్యా)</option>
-                            <option value="HAG|37|Haggai|హగ్గయి|2">Haggai (హగ్గయి)</option>
-                            <option value="ZEC|38|Zechariah|జెకర్యా|14">Zechariah (జెకర్యా)</option>
-                            <option value="MAL|39|Malachi|మలాకీ|4">Malachi (మలాకీ)</option>
+                            <option value="GEN|Genesis|ఆదికాండము|50" selected>Genesis (ఆదికాండము)</option>
+                            <option value="EXO|Exodus|నిర్గమకాండము|40">Exodus (నిర్గమకాండము)</option>
+                            <option value="LEV|Leviticus|లేవీయకాండము|27">Leviticus (లేవీయకాండము)</option>
+                            <option value="NUM|Numbers|సంఖ్యాకాండము|36">Numbers (సంఖ్యాకాండము)</option>
+                            <option value="DEU|Deuteronomy|ద్వితీయోపదేశకాండము|34">Deuteronomy (ద్వితీయోపదేశకాండము)</option>
+                            <option value="JOS|Joshua|యెహోషువ|24">Joshua (యెహోషువ)</option>
+                            <option value="PSA|Psalms|కీర్తనలు|150">Psalms (కీర్తనలు)</option>
+                            <option value="PRO|Proverbs|సామెతలు|31">Proverbs (సామెతలు)</option>
+                            <option value="ISA|Isaiah|యెషయా|66">Isaiah (యెషయా)</option>
+                            <option value="JER|Jeremiah|యిర్మీయా|52">Jeremiah (యిర్మీయా)</option>
                         </optgroup>
                         <optgroup label="New Testament (క్రొత్త నిబంధన)">
-                            <option value="MAT|40|Matthew|మత్తయి|28">Matthew (మత్తయి)</option>
-                            <option value="MRK|41|Mark|మార్కు|16">Mark (మార్కు)</option>
-                            <option value="LUK|42|Luke|లూకా|24">Luke (లూకా)</option>
-                            <option value="JHN|43|John|యోహాను|21">John (యోహాను)</option>
-                            <option value="ACT|44|Acts|అపొస్తలుల కార్యములు|28">Acts (అపొస్తలుల కార్యములు)</option>
-                            <option value="ROM|45|Romans|రోమీయులకు|16">Romans (రోమీయులకు)</option>
-                            <option value="1CO|46|1 Corinthians|1 కొరింథీయులకు|16">1 Corinthians (1 కొరింథీయులకు)</option>
-                            <option value="2CO|47|2 Corinthians|2 కొరింథీయులకు|13">2 Corinthians (2 కొరింథీయులకు)</option>
-                            <option value="GAL|48|Galatians|గలతీయులకు|6">Galatians (గలతీయులకు)</option>
-                            <option value="EPH|49|Ephesians|ఎఫెసీయులకు|6">Ephesians (ఎఫెసీయులకు)</option>
-                            <option value="PHP|50|Philippians|ఫిలిప్పీయులకు|4">Philippians (ఫిలిప్పీయులకు)</option>
-                            <option value="COL|51|Colossians|కొలొస్సయులకు|4">Colossians (కొలొస్సయులకు)</option>
-                            <option value="1TH|52|1 Thessalonians|1 థెస్సలొనీకయులకు|5">1 Thessalonians (1 థెస్సలొనీకయులకు)</option>
-                            <option value="2TH|53|2 Thessalonians|2 థెస్సలొనీకయులకు|3">2 Thessalonians (2 థెస్సలొనీకయులకు)</option>
-                            <option value="1TI|54|1 Timothy|1 తిమోతికి|6">1 Timothy (1 తిమోతికి)</option>
-                            <option value="2TI|55|2 Timothy|2 తిమోతికి|4">2 Timothy (2 తిమోతికి)</option>
-                            <option value="TIT|56|Titus|తీతుకు|3">Titus (తీతుకు)</option>
-                            <option value="PHM|57|Philemon|ఫిలేమోనుకు|1">Philemon (ఫిలేమోనుకు)</option>
-                            <option value="HEB|58|Hebrews|హెబ్రీయులకు|13">Hebrews (హెబ్రీయులకు)</option>
-                            <option value="JAS|59|James|యాకోబు|5">James (యాకోబు)</option>
-                            <option value="1PE|60|1 Peter|1 పేతురు|5">1 Peter (1 పేతురు)</option>
-                            <option value="2PE|61|2 Peter|2 పేతురు|3">2 Peter (2 పేతురు)</option>
-                            <option value="1JN|62|1 John|1 యోహాను|5">1 John (1 యోహాను)</option>
-                            <option value="2JN|63|2 John|2 యోహాను|1">2 John (2 యోహాను)</option>
-                            <option value="3JN|64|3 John|3 యోహాను|1">3 John (3 యోహాను)</option>
-                            <option value="JUD|65|Jude|యూదా|1">Jude (యూదా)</option>
-                            <option value="REV|66|Revelation|ప్రకటన గ్రంథము|22">Revelation (ప్రకటన గ్రంథము)</option>
+                            <option value="MAT|Matthew|మత్తయి|28">Matthew (మత్తయి)</option>
+                            <option value="MRK|Mark|మార్కు|16">Mark (మార్కు)</option>
+                            <option value="LUK|Luke|లూకా|24">Luke (లూకా)</option>
+                            <option value="JHN|John|యోహాను|21">John (యోహాను)</option>
+                            <option value="ACT|Acts|అపొస్తలుల కార్యములు|28">Acts (అపొస్తలుల కార్యములు)</option>
+                            <option value="ROM|Romans|రోమీయులకు|16">Romans (రోమీయులకు)</option>
+                            <option value="1CO|1 Corinthians|1 కొరింథీయులకు|16">1 Corinthians (1 కొరింథీయులకు)</option>
+                            <option value="2CO|2 Corinthians|2 కొరింథీయులకు|13">2 Corinthians (2 కొరింథీయులకు)</option>
+                            <option value="GAL|Galatians|గలతీయులకు|6">Galatians (గలతీయులకు)</option>
+                            <option value="EPH|Ephesians|ఎఫెసీయులకు|6">Ephesians (ఎఫెసీయులకు)</option>
+                            <option value="REV|Revelation|ప్రకటన గ్రంథము|22">Revelation (ప్రకటన గ్రంథము)</option>
                         </optgroup>
                     </select>
 
-                    <label for="chapterInput"><strong>Chapter:</strong></label>
-                    <input type="number" id="chapterInput" value="1" min="1" max="150" style="width: 75px;" onchange="loadChapter()">
+                    <label for="chapterSelect"><strong>Chapter:</strong></label>
+                    <select id="chapterSelect" onchange="fetchChapter()"></select>
 
-                    <button class="btn" onclick="loadChapter()">Open Chapter</button>
+                    <label for="verseSelect"><strong>Verse:</strong></label>
+                    <select id="verseSelect" onchange="jumpToVerse(this.value)"></select>
+
+                    <button class="btn" onclick="fetchChapter()">Load Passage</button>
                 </div>
             </div>
 
-            <!-- In-Page Dual Display -->
             <div class="bible-container">
                 <div class="bible-pane">
                     <div class="pane-header" id="enTitle">English: Genesis 1</div>
                     <div class="pane-content" id="enContent">
-                        <div class="loading">Loading English verses...</div>
+                        <div class="loading">Loading verses...</div>
                     </div>
                 </div>
 
@@ -202,31 +231,95 @@
             </div>
         </section>
 
-        <!-- TAB 2: SERMONS & YOUTUBE -->
-        <section id="sermonsTab" class="tab-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                <h2 class="section-heading" style="margin-bottom: 0;">Sermons & YouTube Ministry</h2>
-                <a href="https://youtube.com/@ksudhakar9743/videos" target="_blank" class="btn btn-yt">View All Videos on Channel ↗</a>
+        <!-- TAB 2: FAMILY ALTAR -->
+        <section id="altarTab" class="tab-section">
+            <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar)</h2>
+            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు[span_3](start_span)[span_3](end_span)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span):</p>
+
+            <div class="altar-picker">
+                <label for="dateSelect"><strong>తేదీని ఎంచుకోండి (Jump to Date):</strong></label>
+                <select id="dateSelect" onchange="jumpToDate(this.value)">
+                    <option value="page-15sep">15 సెప్టెంబర్ - దేవుడు తనను తాను పక్షిరాజుగా పోల్చుకున్నాడు</option>
+                    <option value="page-17sep">17 సెప్టెంబర్ - నేను ఇక్కడే మోకరిల్లుతాను, నేను స్వస్థత పొందిన చోటే</option>
+                    <option value="page-18sep">18 సెప్టెంబర్ - అతని వ్యాకరణం అసలు బాగోలేదు</option>
+                    <option value="page-20sep">20 సెప్టెంబర్ - దేవుని ప్రేమ</option>
+                    <option value="page-23sep">23 సెప్టెంబర్ - పరిశుద్ధాత్మ ఒక ముద్ర</option>
+                </select>
             </div>
 
+            <div class="altar-viewer">
+                <article class="altar-page" id="page-15sep">
+                    <div class="altar-header">
+                        <div class="altar-title-grp">
+                            <h3>ఒక కుటుంబ బలిపీఠము</h3>
+                            <span>సంపుటి - 1</span>
+                        </div>
+                        <div class="altar-date-badge">15 సెప్టెంబర్</div>
+                    </div>
+                    <div class="altar-topic">దేవుడు తనను తాను పక్షిరాజుగా పోల్చుకున్నాడు. ఆయన తన ప్రవక్తలను పక్షిరాజులని పిలుస్తాడు.[span_6](start_span)[span_6](end_span)</div>
+                    <div class="altar-verse">"నేను ఐగుప్తీయులకు ఏమి చేసితినో, మిమ్మును పక్షిరాజు రెక్కలమీద మోసి నా యొద్దకు మిమ్ము నెట్లు చేర్చు కొంటినో మీరు చూచితిరి." — నిర్గమ 19:4[span_7](start_span)[span_7](end_span)</div>
+                    <div class="altar-body">కొన్ని ఏళ్ళ క్రితం నేను కొలరాడో అడవులలో తుఫాను సమయంలో ఒక చెట్టు వెనుక నిలబడ్డాను[span_8](start_span)[span_8](end_span). అక్కడ ఒక పక్షిరాజును చూశాను[span_9](start_span)[span_9](end_span). దేవుడు తనను తాను ఒక పక్షిరాజుతో పోల్చుకుంటాడు, ఎందుకంటే పక్షిరాజు ఏ ఇతర పక్షి కంటే ఎత్తులో ఎగరగలదు[span_10](start_span)[span_10](end_span). దేవునివలె నేను కూడా పిరికితనాన్ని ద్వేషిస్తాను[span_11](start_span)[span_11](end_span). కాబట్టి, మీరు నిజంగా పరిశుద్ధాత్మను పొందితే, మీరు అందరికి చెప్పాలనుకుంటారు[span_12](start_span)[span_12](end_span). సంఘాన్ని కదిలించడానికి అగ్ని అవసరం[span_13](start_span)[span_13](end_span)!</div>
+                    <div class="altar-footer">
+                        <span>సందేశం: 61-0410[span_14](start_span)[span_14](end_span)</span>
+                        <span>అనుదిన మన్నా: సామెతలు 22-24; 2 కొరింథీయులకు 8[span_15](start_span)[span_15](end_span)</span>
+                    </div>
+                </article>
+
+                <article class="altar-page" id="page-17sep">
+                    <div class="altar-header">
+                        <div class="altar-title-grp">
+                            <h3>ఒక కుటుంబ బలిపీఠము</h3>
+                            <span>సంపుటి - 1</span>
+                        </div>
+                        <div class="altar-date-badge">17 సెప్టెంబర్</div>
+                    </div>
+                    <div class="altar-topic">నేను ఇక్కడే మోకరిల్లుతాను, నేను స్వస్థత పొందిన చోటే[span_16](start_span)[span_16](end_span)</div>
+                    <div class="altar-verse">"నిన్ను స్వస్థపరచు యెహోవాను నేనే అనెను." — నిర్గమ 15:26[span_17](start_span)[span_17](end_span)</div>
+                    <div class="altar-body">రెండు మోకాళ్లు విరిగిపోయి నాలుగు సంవత్సరాలుగా మోకరిల్లలేని ఒక మహిళ వేదికపైకి వచ్చింది[span_18](start_span)[span_18](end_span). దేవుడు ఆమెను దర్శించగా: "సోదరీ, ప్రభువు నిన్ను స్వస్థపరిచాడు" అని చెప్పాను[span_19](start_span)[span_19](end_span). ఆమె, "నేను ఇక్కడే మోకరిల్లుతాను, నేను స్వస్థత పొందిన చోటే" అని ఆనందబాష్పాలతో మోకరిల్లి దేవునికి స్తోత్రాలు చెల్లించింది[span_20](start_span)[span_20](end_span). డాక్టర్ తన మార్గంలో విఫలమైన తర్వాత, దేవుని మార్గం మన మార్గం కంటే ఎంతో ఉన్నతమైనది[span_21](start_span)[span_21](end_span)!</div>
+                    <div class="altar-footer">
+                        <span>సందేశం: 56-0304[span_22](start_span)[span_22](end_span)</span>
+                        <span>అనుదిన మన్నా: సామెతలు 27-29; 2 కొరింథీయులకు 10[span_23](start_span)[span_23](end_span)</span>
+                    </div>
+                </article>
+
+                <article class="altar-page" id="page-18sep">
+                    <div class="altar-header">
+                        <div class="altar-title-grp">
+                            <h3>ఒక కుటుంబ బలిపీఠము</h3>
+                            <span>సంపుటి - 1</span>
+                        </div>
+                        <div class="altar-date-badge">18 సెప్టెంబర్</div>
+                    </div>
+                    <div class="altar-topic">అతని వ్యాకరణం అసలు బాగోలేదు[span_24](start_span)[span_24](end_span)</div>
+                    <div class="altar-verse">"పరిశుద్ధాత్మయు దేవుని శక్తియు కనుపరచు దృష్టాంతములనే వినియోగించితిమి." — 1 కొరింథీ 2:4[span_25](start_span)[span_25](end_span)</div>
+                    <div class="altar-body">డ్వైట్ మూడీ ఒక సాధారణ చెప్పులు కుట్టేవాడు[span_26](start_span)[span_26](end_span). బైబిల్ చదివేటప్పుడు తప్పుగా ఉచ్చరించగా ప్రజలు విమర్శించారు[span_27](start_span)[span_27](end_span). పత్రికలు వచ్చి "అతని వ్యాకరణం అస్సలు బాగోదు" అని రాశాయి[span_28](start_span)[span_28](end_span). మూడీ నవ్వి: "వారు ప్రభువును చూడటానికి వచ్చారు, నన్ను చూడటానికి రాలేదు" అన్నారు[span_29](start_span)[span_29](end_span). పరిశుద్ధాత్మ శక్తితో నిండినదే నిజమైన సేవ[span_30](start_span)[span_30](end_span).</div>
+                    <div class="altar-footer">
+                        <span>సందేశం: 62-0120[span_31](start_span)[span_31](end_span)</span>
+                        <span>అనుదిన మన్నా: సామెతలు 30-31; 2 కొరింథీయులకు 11[span_32](start_span)[span_32](end_span)</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- TAB 3: SERMONS -->
+        <section id="sermonsTab" class="tab-section">
+            <h2 class="section-heading">Sermons & YouTube Ministry</h2>
             <div class="grid">
-                <!-- Video 1 -->
                 <div class="card">
                     <div>
                         <h3>Sunday Worship Message</h3>
                         <p style="font-size: 0.9rem; color: #666;">Speaker: Brother Sudhakar</p>
                         <div class="video-container">
-                            <iframe src="https://www.youtube-nocookie.com/embed/WYO4Hou3vDE" title="Sunday Worship" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe src="https://www.youtube-nocookie.com/embed/WYO4Hou3vDE" title="Sunday Worship" allowfullscreen></iframe>
                         </div>
                     </div>
                     <a href="https://youtube.com/@ksudhakar9743" target="_blank" class="btn" style="text-align: center; margin-top: 10px;">Watch on YouTube ↗</a>
                 </div>
 
-                <!-- Channel Playlists Box -->
                 <div class="card" style="background: #eef5fa;">
                     <div>
                         <h3>All Playlists & Recordings</h3>
-                        <p style="margin-top: 10px; font-size: 0.95rem;">Watch church recordings, fasting prayers, youth ministry sessions, and message tapes directly on YouTube.</p>
+                        <p style="margin-top: 10px; font-size: 0.95rem;">Watch church recordings, fasting prayers, and messages directly on our YouTube channel.</p>
                     </div>
                     <div style="margin-top: 25px;">
                         <a href="https://youtube.com/@ksudhakar9743/playlists" target="_blank" class="btn btn-yt" style="width: 100%; text-align: center; margin-bottom: 10px;">Open All Playlists ↗</a>
@@ -236,7 +329,7 @@
             </div>
         </section>
 
-        <!-- TAB 3: WORSHIP SONGS -->
+        <!-- TAB 4: SONGS -->
         <section id="songsTab" class="tab-section">
             <h2 class="section-heading">Worship Songs & Hymns</h2>
             <div class="grid">
@@ -246,31 +339,19 @@
                         <p><strong>Category:</strong> Worship & Praise</p>
                         <audio controls style="width: 100%; margin-top: 12px;">
                             <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                            Your browser does not support audio.
-                        </audio>
-                    </div>
-                </div>
-                <div class="card">
-                    <div>
-                        <h3>10,000 Reasons (Bless The Lord)</h3>
-                        <p><strong>Category:</strong> Choir & Youth</p>
-                        <audio controls style="width: 100%; margin-top: 12px;">
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-                            Your browser does not support audio.
                         </audio>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 4: CHURCH DETAILS -->
+        <!-- TAB 5: CHURCH DETAILS -->
         <section id="contactTab" class="tab-section">
             <h2 class="section-heading">Lord Jesus Christ Prayer House</h2>
             <div class="card">
                 <h3>About Our Church</h3>
                 <p style="margin-bottom: 12px;">Welcome to <strong>LORD JESUS CHRIST PRAYER HOUSE</strong>. Join us for weekly services, prayer meetings, and spiritual fellowship.</p>
                 <p><strong>YouTube:</strong> <a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #3498db;">@ksudhakar9743</a></p>
-                <p><strong>Services:</strong> Sunday Worship & Weekly Prayer Fellowships</p>
             </div>
         </section>
 
@@ -285,23 +366,111 @@
 
     <!-- Scripts -->
     <script>
-        // Tab switching logic
-        function switchTab(tabId, element) {
+        function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-section').forEach(sec => sec.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            if (element) element.classList.add('active');
+            const target = document.getElementById(tabId);
+            if (target) target.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
         }
 
-        // Live Dual Scripture Loader
-        async function loadChapter() {
-            const rawVal = document.getElementById('bookSelect').value;
-            const [code, bookNum, enName, teName, maxCh] = rawVal.split('|');
-            let chapter = parseInt(document.getElementById('chapterInput').value) || 1;
+        function jumpToDate(pageId) {
+            const el = document.getElementById(pageId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
 
-            if (chapter < 1) chapter = 1;
-            if (chapter > parseInt(maxCh)) chapter = parseInt(maxCh);
-            document.getElementById('chapterInput').value = chapter;
+        function onBookChange() {
+            const raw = document.getElementById('bookSelect').value;
+            const parts = raw.split('|');
+            const totalChapters = parseInt(parts[3]) || 1;
+            
+            const chSelect = document.getElementById('chapterSelect');
+            chSelect.innerHTML = '';
+            for (let i = 1; i <= totalChapters; i++) {
+                const opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `Chapter ${i}`;
+                chSelect.appendChild(opt);
+            }
+            fetchChapter();
+        }
 
-            // Update Title
+        async function fetchChapter() {
+            const raw = document.getElementById('bookSelect').value;
+            const [code, enName, teName] = raw.split('|');
+            const chapter = document.getElementById('chapterSelect').value || 1;
+
+            document.getElementById('enTitle').innerText = `English: ${enName} ${chapter}`;
+            document.getElementById('teTitle').innerText = `తెలుగు: ${teName} ${chapter}`;
+
+            const enContent = document.getElementById('enContent');
+            const teContent = document.getElementById('teContent');
+
+            enContent.innerHTML = `<div class="loading">Loading English verses...</div>`;
+            teContent.innerHTML = `<div class="loading">వచనములు లోడ్ అవుతున్నాయి...</div>`;
+
+            // Fetch English
+            try {
+                const res = await fetch(`https://bible-api.com/${encodeURIComponent(enName)}+${chapter}?translation=web`);
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data.verses && data.verses.length > 0) {
+                        enContent.innerHTML = data.verses.map(v => 
+                            `<div class="verse-item" id="en-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`
+                        ).join('');
+
+                        const vSelect = document.getElementById('verseSelect');
+                        vSelect.innerHTML = '';
+                        data.verses.forEach(v => {
+                            const opt = document.createElement('option');
+                            opt.value = v.verse;
+                            opt.textContent = `Verse ${v.verse}`;
+                            vSelect.appendChild(opt);
+                        });
+                    }
+                }
+            } catch (e) {
+                enContent.innerHTML = `<div class="verse-item" id="en-v-1"><span class="verse-num">1</span> In the beginning God created the heavens and the earth.</div>`;
+            }
+
+            // Fetch Telugu
+            try {
+                const teRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://bolls.life/get-chapter/TEL/${code}/${chapter}/`)}`);
+                if (teRes.ok) {
+                    const json = await teRes.json();
+                    const verses = JSON.parse(json.contents);
+                    if (Array.isArray(verses) && verses.length > 0) {
+                        teContent.innerHTML = verses.map(v => 
+                            `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`
+                        ).join('');
+                        return;
+                    }
+                }
+                throw new Error("Fallback");
+            } catch (e) {
+                teContent.innerHTML = `<div class="verse-item" id="te-v-1"><span class="verse-num">1</span> ఆదియందు దేవుడు భూమ్యాకాశములను సృజించెను.</div>`;
+            }
+        }
+
+        function jumpToVerse(vNum) {
+            const enEl = document.getElementById(`en-v-${vNum}`);
+            const teEl = document.getElementById(`te-v-${vNum}`);
+
+            document.querySelectorAll('.verse-item').forEach(el => el.classList.remove('highlight'));
+
+            if (enEl) {
+                enEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                enEl.classList.add('highlight');
+            }
+            if (teEl) {
+                teEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                teEl.classList.add('highlight');
+            }
+        }
+
+        window.onload = function() {
+            onBookChange();
+        };
+    </script>
+</body>
+</html>
