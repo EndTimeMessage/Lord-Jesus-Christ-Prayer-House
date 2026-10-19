@@ -19,7 +19,7 @@
         header { background: #0b1120; color: white; padding: 1rem 5%; text-align: center; border-bottom: 1px solid #1e293b; }
         header h1 { font-size: 1.35rem; letter-spacing: 0.8px; font-weight: 700; }
 
-        /* Hero Banner with Custom Background Image */
+        /* Hero Banner with Custom Background Image (No corner eagle or cloud images) */
         .hero { 
             position: relative; 
             background-color: #080d1a;
@@ -30,7 +30,6 @@
             border-bottom: 3px solid #2563eb;
         }
 
-        /* Low Opacity Background Layer */
         .hero-bg {
             position: absolute;
             top: 0;
@@ -44,44 +43,13 @@
             z-index: 0;
         }
 
-        .banner-corner-left {
-            position: absolute;
-            left: 20px;
-            top: 20px;
-            width: 140px;
-            max-width: 22vw;
-            height: auto;
-            border: none !important;
-            background: transparent !important;
-            mix-blend-mode: screen;
-            filter: contrast(160%) brightness(120%) drop-shadow(0 0 16px rgba(255, 255, 255, 0.7));
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .banner-corner-right {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            width: 135px;
-            max-width: 22vw;
-            height: auto;
-            border: none !important;
-            background: transparent !important;
-            mix-blend-mode: screen;
-            filter: contrast(170%) brightness(130%) drop-shadow(0 0 14px rgba(255, 255, 255, 0.5));
-            pointer-events: none;
-            z-index: 1;
-        }
-
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 960px;
+            max-width: 980px;
             margin: 0 auto;
         }
 
-        /* Bright & Bold Church Name */
         .hero h2 { 
             font-size: 2.7rem; 
             font-weight: 800;
@@ -138,7 +106,7 @@
             align-items: center;
             gap: 6px; 
             width: 100%;
-            max-width: 940px;
+            max-width: 980px;
             margin: 0 auto 14px;
         }
 
@@ -149,7 +117,7 @@
             color: white; 
             padding: 10px 4px; 
             border-radius: 8px; 
-            font-size: 0.86rem; 
+            font-size: 0.82rem; 
             font-weight: 600; 
             cursor: pointer; 
             text-align: center;
@@ -164,7 +132,6 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.5); 
         }
 
-        /* Worship Timings Banner Bar */
         .worship-timings {
             background: rgba(15, 23, 42, 0.75);
             border: 1px solid rgba(148, 163, 184, 0.3);
@@ -180,16 +147,10 @@
             overflow-x: auto;
             max-width: 100%;
         }
-        .worship-timings span.title {
-            color: #38bdf8;
-            margin-right: 6px;
-        }
-        .worship-timings span.sep {
-            color: #94a3b8;
-            margin: 0 10px;
-        }
+        .worship-timings span.title { color: #38bdf8; margin-right: 6px; }
+        .worship-timings span.sep { color: #94a3b8; margin: 0 10px; }
 
-        /* Container & Sections */
+        /* Sections */
         .container { max-width: 1150px; margin: 30px auto; padding: 0 20px; }
         .tab-section { display: none; }
         .tab-section.active { display: block; animation: fadeIn 0.25s ease-in; }
@@ -215,12 +176,44 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin: 12px 0; background: #000; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Bible Selector Controls */
+        /* Home Introduction Cards */
+        .intro-quote-card {
+            background: white;
+            border-radius: 10px;
+            padding: 26px 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            border-left: 5px solid #2563eb;
+            margin-bottom: 22px;
+        }
+        .intro-quote-card h3 { color: #1e293b; margin-bottom: 10px; font-size: 1.25rem; }
+        .intro-quote-card p { font-size: 1.05rem; line-height: 1.8; color: #334155; }
+        .intro-quote-card cite { display: block; margin-top: 8px; font-weight: bold; color: #2563eb; font-style: normal; }
+
+        /* Message List Styling */
+        .msg-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px; }
+        .msg-item {
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+        .msg-item:hover, .msg-item.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: translateX(4px);
+        }
+        .msg-title { font-weight: 600; color: #1e293b; font-size: 1.02rem; }
+
+        /* Dual Bible Panes */
         .bible-toolbar { background: white; padding: 18px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); margin-bottom: 20px; }
         .bible-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
         .bible-controls select { padding: 9px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.95rem; }
-
-        /* Dual Bible Panes */
         .bible-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .bible-pane { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; }
         .pane-header { background: #1e293b; color: white; padding: 12px 18px; font-weight: 600; font-size: 1rem; }
@@ -230,7 +223,7 @@
         .verse-num { font-weight: bold; color: #2563eb; margin-right: 8px; font-size: 0.95rem; }
         .loading { color: #64748b; font-style: italic; padding: 20px 0; }
 
-        /* Family Altar PDF Reader */
+        /* PDF Readers */
         .pdf-box { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
         .pdf-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
         .pdf-scroll-canvas-container { 
@@ -289,28 +282,14 @@
             transition: transform 0.2s;
         }
         .gallery-item:hover { transform: translateY(-4px); }
-        .gallery-item img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            display: block;
-        }
-        .gallery-caption {
-            padding: 10px 14px;
-            font-size: 0.9rem;
-            color: #475569;
-            font-weight: 500;
-            background: #fff;
-            border-top: 1px solid #f1f5f9;
-        }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .gallery-caption { padding: 10px 14px; font-size: 0.9rem; color: #475569; font-weight: 500; background: #fff; border-top: 1px solid #f1f5f9; }
 
         /* Footer */
         footer { background: #0b1120; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid #1e293b; }
         footer p { margin-bottom: 6px; color: #94a3b8; }
 
         @media (max-width: 850px) {
-            .banner-corner-left { width: 85px; left: 8px; top: 12px; }
-            .banner-corner-right { width: 85px; right: 8px; top: 12px; }
             .hero h2 { font-size: 1.8rem; margin-bottom: 15px; }
             .tabs-wrapper { flex-wrap: wrap; }
             .tab-btn { flex: 1 1 30%; font-size: 0.8rem; padding: 8px 2px; }
@@ -329,12 +308,9 @@
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
     </header>
 
-    <!-- Banner -->
+    <!-- Banner (Eagle and Cloud images removed) -->
     <div class="hero">
         <div class="hero-bg"></div>
-
-        <img src="cloud.jpg" alt="Cloud" class="banner-corner-left" onerror="this.style.display='none'">
-        <img src="eagle.jpg" alt="Eagle" class="banner-corner-right" onerror="this.style.display='none'">
 
         <div class="hero-content">
             <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
@@ -350,15 +326,17 @@
 
             <!-- Single-Line Centered Tabs -->
             <div class="tabs-wrapper">
-                <button type="button" class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible</button>
+                <button type="button" class="tab-btn active" onclick="switchTab('homeTab', this)">🏠 Welcome</button>
+                <button type="button" class="tab-btn" onclick="switchTab('messageTab', this)">🕊️ End Time Message</button>
                 <button type="button" class="tab-btn" onclick="switchTab('altarTab', this)">🔥 Family Altar</button>
+                <button type="button" class="tab-btn" onclick="switchTab('bibleTab', this)">📖 Holy Bible</button>
                 <button type="button" class="tab-btn" onclick="switchTab('updatesTab', this)">📸 Wiki / Updates</button>
                 <button type="button" class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons</button>
                 <button type="button" class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Songs</button>
                 <button type="button" class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
             </div>
 
-            <!-- Worship Timings (Single Line, Pipe Separated) -->
+            <!-- Worship Timings -->
             <div class="worship-timings">
                 <span class="title">Worship Timings :</span> Sunday 10:00 AM <span class="sep">|</span> Wednesday 6:00 PM <span class="sep">|</span> Saturday 6:00 PM
             </div>
@@ -367,8 +345,103 @@
 
     <div class="container">
 
-        <!-- TAB 1: SIDE-BY-SIDE DUAL BIBLE -->
-        <section id="bibleTab" class="tab-section active">
+        <!-- TAB 1: DEFAULT INTRODUCTION / WELCOME PAGE -->
+        <section id="homeTab" class="tab-section active">
+            <h2 class="section-heading">Welcome to Lord Jesus Christ Prayer House</h2>
+            
+            <div class="intro-quote-card">
+                <h3>📖 The Pillar Scripture</h3>
+                <p>"యేసుక్రీస్తు నిన్న, నేడు, ఒక్కటేరీతిగా ఉన్నాడు; అవును యుగయుగములకును ఒక్కటేరీతిగా ఉండును."</p>
+                <cite>— హెబ్రీయులకు 13:8[span_16](start_span)[span_16](end_span)</cite>
+            </div>
+
+            <div class="intro-quote-card" style="border-left-color: #10b981;">
+                <h3>🕊️ The End Time Promise</h3>
+                <p>"ఇదిగో యెహోవా నియమించిన భయంకరమైన ఆ మహాదినము రాకమునుపు నేను ప్రవక్తయైన ఏలీయాను మీయొద్దకు పంపుదును. అతడు తండ్రుల హృదయములను పిల్లలతట్టును, పిల్లల హృదయములను తండ్రులతట్టును త్రిప్పును."</p>
+                <cite>— మలాకీ 4:5-6</cite>
+            </div>
+
+            <div class="intro-quote-card" style="border-left-color: #f59e0b;">
+                <h3>💬 Words of Faith by Prophet William Marrion Branham</h3>
+                <p>"Only believe, all things are possible. God doesn't call the qualified, He qualifies the called. Stay with the Word, for heaven and earth will pass away, but His Word shall never fail."</p>
+                <cite>— Bro. William Marrion Branham</cite>
+            </div>
+
+            <div class="card" style="margin-top: 20px; background: #f8fafc;">
+                <h3>Join Us in Fellowship & Worship</h3>
+                <p style="margin: 8px 0 16px; color: #475569;">We welcome you and your family to worship with us and feed upon the spiritual bread of life for this hour.</p>
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button class="btn" onclick="switchTab('messageTab', document.querySelectorAll('.tab-btn')[1])">Read Message Books</button>
+                    <button class="btn btn-green" onclick="switchTab('bibleTab', document.querySelectorAll('.tab-btn')[3])">Read Holy Bible</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: END TIME MESSAGES BY BR. BRANHAM (In-Page Reader) -->
+        <section id="messageTab" class="tab-section">
+            <h2 class="section-heading">End Time Messages By Br. Branham</h2>
+            <p style="margin-bottom: 18px;">Click on any message below to read it directly on this page[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span)[span_21](start_span)[span_21](end_span):</p>
+
+            <!-- List of Messages Matching PDF Names Exactly -->
+            <div class="msg-list">
+                <div class="msg-item active" onclick="loadMessagePdf('54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf', this)">
+                    <span class="msg-title">📄 54-0103M_ప్రశ్నలు మరియు జవాబులు #1</span>
+                    <span class="btn" style="padding: 5px 12px; font-size: 0.85rem;">Read Book</span>
+                </div>
+                <div class="msg-item" onclick="loadMessagePdf('60-0210M_నాకు ఇవ్వబడిన ప్రత్యక్షత.pdf', this)">
+                    <span class="msg-title">📄 60-0210M_నాకు ఇవ్వబడిన ప్రత్యక్షత</span>
+                    <span class="btn" style="padding: 5px 12px; font-size: 0.85rem;">Read Book</span>
+                </div>
+                <div class="msg-item" onclick="loadMessagePdf('63-0601_వచ్చి నన్ను వెంబడించండి.pdf', this)">
+                    <span class="msg-title">📄 63-0601_వచ్చి నన్ను వెంబడించండి</span>
+                    <span class="btn" style="padding: 5px 12px; font-size: 0.85rem;">Read Book</span>
+                </div>
+                <div class="msg-item" onclick="loadMessagePdf('63-0630M_తృతీయ నిర్గమము.pdf', this)">
+                    <span class="msg-title">📄 63-0630M_తృతీయ నిర్గమము</span>
+                    <span class="btn" style="padding: 5px 12px; font-size: 0.85rem;">Read Book</span>
+                </div>
+                <div class="msg-item" onclick="loadMessagePdf('63-0801_A Paradox.pdf', this)">
+                    <span class="msg-title">📄 63-0801_A Paradox</span>
+                    <span class="btn" style="padding: 5px 12px; font-size: 0.85rem;">Read Book</span>
+                </div>
+            </div>
+
+            <!-- In-Page Reader Container for Message Books -->
+            <div class="pdf-box">
+                <div class="pdf-actions">
+                    <a id="msgFullLink" href="54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf" target="_blank" class="btn btn-green">
+                        📖 Open In New Window ↗
+                    </a>
+                    <a id="msgDownloadLink" href="54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf" download class="btn">
+                        📥 Download Message PDF
+                    </a>
+                    <span id="msgLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
+                </div>
+                <div id="msgViewerContainer" class="pdf-scroll-canvas-container"></div>
+            </div>
+        </section>
+
+        <!-- TAB 3: FAMILY ALTAR -->
+        <section id="altarTab" class="tab-section">
+            <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar - PDF Book)</h2>
+            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read directly on this page):</p>
+
+            <div class="pdf-box">
+                <div class="pdf-actions">
+                    <a href="family-altar.pdf" target="_blank" class="btn btn-green">
+                        📖 Open Full PDF in New Window ↗
+                    </a>
+                    <a href="family-altar.pdf" download="family-altar.pdf" class="btn">
+                        📥 Download PDF File
+                    </a>
+                    <span id="pdfLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
+                </div>
+                <div id="pdfViewerContainer" class="pdf-scroll-canvas-container"></div>
+            </div>
+        </section>
+
+        <!-- TAB 4: SIDE-BY-SIDE DUAL BIBLE -->
+        <section id="bibleTab" class="tab-section">
             <h2 class="section-heading">Holy Bible (పరిశుద్ధ గ్రంథము & English NKJV/WEB)</h2>
             <p style="margin-bottom: 15px;">Select book, chapter, and verse to read side-by-side:</p>
 
@@ -383,14 +456,6 @@
                             <option value="NUM|04|Numbers|సంఖ్యాకాండము|36">Numbers (సంఖ్యాకాండము)</option>
                             <option value="DEU|05|Deuteronomy|ద్వితీయోపదేశకాండము|34">Deuteronomy (ద్వితీయోపదేశకాండము)</option>
                             <option value="JOS|06|Joshua|యెహోషువ|24">Joshua (యెహోషువ)</option>
-                            <option value="JDG|07|Judges|న్యాయాధిపతులు|21">Judges (న్యాయాధిపతులు)</option>
-                            <option value="RUT|08|Ruth|రూతు|4">Ruth (రూతు)</option>
-                            <option value="1SA|09|1 Samuel|1 సమూయేలు|31">1 Samuel (1 సమూయేలు)</option>
-                            <option value="2SA|10|2 Samuel|2 సమూయేలు|24">2 Samuel (2 సమూయేలు)</option>
-                            <option value="1KI|11|1 Kings|1 రాజులు|22">1 Kings (1 రాజులు)</option>
-                            <option value="2KI|12|2 Kings|2 రాజులు|25">2 Kings (2 రాజులు)</option>
-                            <option value="1CH|13|1 Chronicles|1 దినవృత్తాంతములు|29">1 Chronicles (1 దినవృత్తాంతములు)</option>
-                            <option value="2CH|14|2 Chronicles|2 దినవృత్తాంతములు|36">2 Chronicles (2 దినవృత్తాంతములు)</option>
                             <option value="PSA|19|Psalms|కీర్తనలు|150">Psalms (కీర్తనలు)</option>
                             <option value="PRO|20|Proverbs|సామెతలు|31">Proverbs (సామెతలు)</option>
                             <option value="ISA|23|Isaiah|యెషయా|66">Isaiah (యెషయా)</option>
@@ -407,14 +472,6 @@
                             <option value="2CO|47|2 Corinthians|2 కొరింథీయులకు|13">2 Corinthians (2 కొరింథీయులకు)</option>
                             <option value="GAL|48|Galatians|గలతీయులకు|6">Galatians (గలతీయులకు)</option>
                             <option value="EPH|49|Ephesians|ఎఫెసీయులకు|6">Ephesians (ఎఫెసీయులకు)</option>
-                            <option value="PHP|50|Philippians|ఫిలిప్పీయులకు|4">Philippians (ఫిలిప్పీయులకు)</option>
-                            <option value="COL|51|Colossians|కొలొస్సయులకు|4">Colossians (కొలొస్సయులకు)</option>
-                            <option value="1TH|52|1 Thessalonians|1 థెస్సలొనీకయులకు|5">1 Thessalonians (1 థెస్సలొనీకయులకు)</option>
-                            <option value="1TI|54|1 Timothy|1 తిమోతికి|6">1 Timothy (1 తిమోతికి)</option>
-                            <option value="HEB|58|Hebrews|హెబ్రీయులకు|13">Hebrews (హెబ్రీయులకు)</option>
-                            <option value="JAS|59|James|యాకోబు|5">James (యాకోబు)</option>
-                            <option value="1PE|60|1 Peter|1 పేతురు|5">1 Peter (1 పేతురు)</option>
-                            <option value="1JN|62|1 John|1 యోహాను|5">1 John (1 యోహాను)</option>
                             <option value="REV|66|Revelation|ప్రకటన గ్రంథము|22">Revelation (ప్రకటన గ్రంథము)</option>
                         </optgroup>
                     </select>
@@ -446,27 +503,7 @@
             </div>
         </section>
 
-        <!-- TAB 2: FAMILY ALTAR -->
-        <section id="altarTab" class="tab-section">
-            <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar - PDF Book)</h2>
-            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read directly on this page):</p>
-
-            <div class="pdf-box">
-                <div class="pdf-actions">
-                    <a href="family-altar.pdf" target="_blank" class="btn btn-green">
-                        📖 Open Full PDF in New Window ↗
-                    </a>
-                    <a href="family-altar.pdf" download="family-altar.pdf" class="btn">
-                        📥 Download PDF File
-                    </a>
-                    <span id="pdfLoadingStatus" style="font-weight: 600; color: #2563eb;">పుస్తక పేజీలు లోడ్ అవుతున్నాయి...</span>
-                </div>
-
-                <div id="pdfViewerContainer" class="pdf-scroll-canvas-container"></div>
-            </div>
-        </section>
-
-        <!-- TAB 3: WIKI / UPDATES -->
+        <!-- TAB 5: WIKI / UPDATES -->
         <section id="updatesTab" class="tab-section">
             <h2 class="section-heading">Church Wiki & Live Updates</h2>
             <p style="margin-bottom: 15px;">Photos, announcements, and special meeting updates:</p>
@@ -476,7 +513,7 @@
             </div>
         </section>
 
-        <!-- TAB 4: SERMONS -->
+        <!-- TAB 6: SERMONS -->
         <section id="sermonsTab" class="tab-section">
             <h2 class="section-heading">Sermons & YouTube Ministry</h2>
             <div class="grid">
@@ -504,7 +541,7 @@
             </div>
         </section>
 
-        <!-- TAB 5: SONGS -->
+        <!-- TAB 7: SONGS -->
         <section id="songsTab" class="tab-section">
             <h2 class="section-heading">Worship Songs & Hymns</h2>
             <div class="grid">
@@ -520,7 +557,7 @@
             </div>
         </section>
 
-        <!-- TAB 6: CHURCH DETAILS -->
+        <!-- TAB 8: CHURCH DETAILS -->
         <section id="contactTab" class="tab-section">
             <h2 class="section-heading">Lord Jesus Christ Prayer House - Church Details</h2>
             <div class="info-card">
@@ -572,7 +609,8 @@
 
     <!-- Scripts -->
     <script>
-        var pdfLoaded = false;
+        var altarPdfLoaded = false;
+        var currentLoadedMsg = '';
 
         function switchTab(tabId, btnElement) {
             var sections = document.querySelectorAll('.tab-section');
@@ -587,23 +625,27 @@
             if (target) target.classList.add('active');
             if (btnElement) btnElement.classList.add('active');
 
-            if (tabId === 'altarTab' && !pdfLoaded) {
-                renderPdfInPage();
+            if (tabId === 'altarTab' && !altarPdfLoaded) {
+                renderPdfInPage('family-altar.pdf', 'pdfViewerContainer', 'pdfLoadingStatus');
+                altarPdfLoaded = true;
+            }
+            if (tabId === 'messageTab' && !currentLoadedMsg) {
+                loadMessagePdf('54-0103M_ప్రశ్నలు మరియు జవాబులు #1.pdf', document.querySelector('.msg-item'));
             }
             if (tabId === 'updatesTab') {
                 loadGitHubGallery();
             }
         }
 
-        function renderPdfInPage() {
-            var url = 'family-altar.pdf';
-            var container = document.getElementById('pdfViewerContainer');
-            var statusEl = document.getElementById('pdfLoadingStatus');
+        // Generic In-Page PDF Canvas Renderer
+        function renderPdfInPage(pdfUrl, containerId, statusId) {
+            var container = document.getElementById(containerId);
+            var statusEl = document.getElementById(statusId);
+            statusEl.innerText = 'పుస్తక పేజీలు లోడ్ అవుతున్నాయి...';
+            container.innerHTML = '';
 
-            pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-                pdfLoaded = true;
+            pdfjsLib.getDocument(encodeURI(pdfUrl)).promise.then(function(pdfDoc) {
                 statusEl.innerText = `మొత్తం ${pdfDoc.numPages} పేజీలు లోడ్ చేయబడ్డాయి.`;
-                container.innerHTML = '';
 
                 for (var pageNum = 1; pageNum <= pdfDoc.numPages; pageNum++) {
                     (function(num) {
@@ -627,8 +669,21 @@
                     })(pageNum);
                 }
             }).catch(function(err) {
-                statusEl.innerHTML = '<span style="color:#ef4444;">PDF నేరుగా లోడ్ కాలేదు. "family-altar.pdf" ఫైల్ GitHub లో ఉందో లేదో సరిచూడండి.</span>';
+                statusEl.innerHTML = `<span style="color:#ef4444;">PDF లోడ్ కాలేదు. "${pdfUrl}" ఫైల్ GitHub లో ఉందో లేదో సరిచూడండి.</span>`;
             });
+        }
+
+        // Handler for End Time Message Book selection
+        function loadMessagePdf(fileName, el) {
+            document.querySelectorAll('.msg-item').forEach(function(item) { item.classList.remove('active'); });
+            if (el) el.classList.add('active');
+
+            currentLoadedMsg = fileName;
+            document.getElementById('msgFullLink').href = encodeURI(fileName);
+            document.getElementById('msgDownloadLink').href = encodeURI(fileName);
+            document.getElementById('msgDownloadLink').setAttribute('download', fileName);
+
+            renderPdfInPage(fileName, 'msgViewerContainer', 'msgLoadingStatus');
         }
 
         function onBookChange() {
@@ -689,7 +744,7 @@
                 enContent.innerHTML = `<div class="verse-item" id="en-v-1"><span class="verse-num">1</span> In the beginning God created the heavens and the earth.</div>`;
             }
 
-            // High-Speed Direct Telugu Fetch
+            // Telugu
             var loadedTelugu = false;
             var bookPad = ("00" + parseInt(bookNum)).slice(-2);
 
@@ -746,7 +801,6 @@
             }
         }
 
-        // Resilient Automatic Gallery Loader
         async function loadGitHubGallery() {
             var container = document.getElementById('galleryContainer');
             var repos = [
@@ -781,19 +835,7 @@
                 } catch (e) {}
             }
 
-            // Fallback scan for common file names
-            var defaultFiles = ['photo1.jpg', 'photo2.jpg', 'event1.jpg', 'church.jpg'];
-            var html = '';
-            defaultFiles.forEach(function(name) {
-                html += `
-                    <div class="gallery-item" style="display:none;" id="gal-${name.replace('.', '-')}">
-                        <img src="gallery/${name}" alt="Church Update" onload="document.getElementById('gal-${name.replace('.', '-')}').style.display='block';">
-                        <div class="gallery-caption">Church Update</div>
-                    </div>
-                `;
-            });
-
-            container.innerHTML = html + `
+            container.innerHTML = `
                 <div style="grid-column: 1/-1; background: white; padding: 25px; border-radius: 8px; text-align: center; color: #64748b;">
                     <p style="font-size: 1.05rem; margin-bottom: 6px;">Church updates and event photos appear here.</p>
                     <p style="font-size: 0.9rem;">Upload images into the <strong>gallery</strong> folder in your GitHub repository.</p>
