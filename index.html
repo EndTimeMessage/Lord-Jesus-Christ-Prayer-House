@@ -9,42 +9,48 @@
         body { color: #333; line-height: 1.6; background-color: #f8f9fa; }
         
         /* Header */
-        header { background: #1a252f; color: white; padding: 1.2rem 5%; text-align: center; }
-        header h1 { font-size: 1.5rem; letter-spacing: 0.5px; }
+        header { background: #0f172a; color: white; padding: 1rem 5%; text-align: center; border-bottom: 1px solid #1e293b; }
+        header h1 { font-size: 1.35rem; letter-spacing: 0.8px; font-weight: 700; }
 
         /* Hero Banner */
         .hero { 
             position: relative; 
-            background: linear-gradient(rgba(10, 20, 30, 0.85), rgba(10, 20, 30, 0.88)), url('https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80') center/cover; 
+            background: radial-gradient(circle at center, #1e293b 0%, #0a0f1d 100%); 
             color: white; 
             text-align: center; 
-            padding: 40px 15px 35px; 
+            padding: 45px 15px 35px; 
             overflow: hidden; 
+            border-bottom: 3px solid #3b82f6;
         }
 
-        /* Corner Images */
+        /* Pure Cloud (No square box, clean natural blend) */
         .banner-corner-left {
             position: absolute;
-            left: 12px;
-            top: 10px;
-            width: 155px;
-            max-width: 25vw;
+            left: 20px;
+            top: 20px;
+            width: 140px;
+            max-width: 22vw;
             height: auto;
+            border: none !important;
+            background: transparent !important;
             mix-blend-mode: screen;
-            filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.55));
+            filter: contrast(160%) brightness(120%) drop-shadow(0 0 16px rgba(255, 255, 255, 0.7));
             pointer-events: none;
             z-index: 1;
         }
 
+        /* Pure Eagle (No square box, clean natural blend) */
         .banner-corner-right {
             position: absolute;
-            right: 12px;
-            top: 10px;
-            width: 155px;
-            max-width: 25vw;
+            right: 20px;
+            top: 15px;
+            width: 135px;
+            max-width: 22vw;
             height: auto;
+            border: none !important;
+            background: transparent !important;
             mix-blend-mode: screen;
-            filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4)) brightness(1.25);
+            filter: contrast(170%) brightness(130%) drop-shadow(0 0 14px rgba(255, 255, 255, 0.5));
             pointer-events: none;
             z-index: 1;
         }
@@ -52,88 +58,98 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 860px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .hero h2 { font-size: 2rem; margin-bottom: 6px; text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
-        .hero p { font-size: 1.1rem; margin-bottom: 16px; font-style: italic; color: #ecf0f1; text-shadow: 0 2px 4px rgba(0,0,0,0.6); }
+        /* Larger Church Title */
+        .hero h2 { 
+            font-size: 2.5rem; 
+            font-weight: 800;
+            letter-spacing: 1px;
+            margin-bottom: 8px; 
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(59, 130, 246, 0.4); 
+        }
+        .hero p { 
+            font-size: 1.18rem; 
+            margin-bottom: 18px; 
+            font-style: italic; 
+            color: #cbd5e1; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.7); 
+        }
 
-        /* Action Buttons in Banner */
+        /* Action Buttons */
         .banner-actions {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .loc-btn {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: #e74c3c;
+            gap: 6px;
+            background: #ef4444;
             color: white;
             text-decoration: none;
             padding: 8px 18px;
-            border-radius: 20px;
+            border-radius: 25px;
             font-size: 0.92rem;
             font-weight: 600;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
             transition: all 0.2s ease;
         }
-        .loc-btn:hover { background: #c0392b; transform: translateY(-2px); }
+        .loc-btn:hover { background: #dc2626; transform: translateY(-2px); }
 
         .call-banner-btn {
             display: inline-flex;
             align-items: center;
-            gap: 7px;
-            background: #27ae60;
+            gap: 6px;
+            background: #10b981;
             color: white;
             text-decoration: none;
             padding: 8px 18px;
-            border-radius: 20px;
+            border-radius: 25px;
             font-size: 0.92rem;
             font-weight: 600;
-            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.35);
             transition: all 0.2s ease;
         }
-        .call-banner-btn:hover { background: #219653; transform: translateY(-2px); }
+        .call-banner-btn:hover { background: #059669; transform: translateY(-2px); }
 
-        /* Single-Line Scrollable Tabs */
+        /* All 5 Tabs in Single Line - No Scrollbar */
         .tabs-wrapper { 
             display: flex; 
-            justify-content: center; 
+            justify-content: space-between; 
             align-items: center;
-            gap: 10px; 
-            flex-wrap: nowrap; 
-            overflow-x: auto; 
-            padding: 6px 4px 10px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
+            gap: 8px; 
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
         }
-        .tabs-wrapper::-webkit-scrollbar { height: 4px; }
-        .tabs-wrapper::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.25); border-radius: 4px; }
 
         .tab-btn { 
-            background: rgba(255, 255, 255, 0.18); 
-            border: 2px solid #ffffff; 
+            flex: 1;
+            background: rgba(255, 255, 255, 0.12); 
+            border: 1.5px solid rgba(255, 255, 255, 0.5); 
             color: white; 
-            padding: 9px 18px; 
-            border-radius: 30px; 
-            font-size: 0.92rem; 
+            padding: 10px 6px; 
+            border-radius: 8px; 
+            font-size: 0.88rem; 
             font-weight: 600; 
             cursor: pointer; 
-            white-space: nowrap; 
-            flex-shrink: 0;
+            text-align: center;
             transition: all 0.2s ease; 
         }
         .tab-btn:hover, .tab-btn.active { 
-            background: #3498db; 
-            border-color: #3498db; 
-            color: #fff; 
+            background: #2563eb; 
+            border-color: #3b82f6; 
+            color: #ffffff; 
             transform: translateY(-2px); 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.25); 
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); 
         }
 
         /* Container & Tabs */
@@ -146,113 +162,73 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        h2.section-heading { border-bottom: 3px solid #3498db; display: inline-block; padding-bottom: 6px; margin-bottom: 25px; color: #2c3e50; }
+        h2.section-heading { border-bottom: 3px solid #2563eb; display: inline-block; padding-bottom: 6px; margin-bottom: 22px; color: #1e293b; }
 
-        .btn { background: #3498db; color: white; padding: 9px 18px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; border: none; cursor: pointer; }
-        .btn:hover { background: #2980b9; }
+        .btn { background: #2563eb; color: white; padding: 9px 18px; text-decoration: none; border-radius: 6px; display: inline-block; font-weight: 500; border: none; cursor: pointer; }
+        .btn:hover { background: #1d4ed8; }
         .btn-yt { background: #cc0000; color: white; }
-        .btn-yt:hover { background: #aa0000; }
-        .btn-green { background: #27ae60; color: white; }
-        .btn-green:hover { background: #219653; }
+        .btn-yt:hover { background: #990000; }
+        .btn-green { background: #10b981; color: white; }
+        .btn-green:hover { background: #059669; }
 
         /* Grid */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 22px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); display: flex; flex-direction: column; justify-content: space-between; }
-        .card h3 { margin-bottom: 10px; color: #2c3e50; font-size: 1.15rem; }
+        .card { background: white; padding: 22px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); display: flex; flex-direction: column; justify-content: space-between; }
+        .card h3 { margin-bottom: 10px; color: #1e293b; font-size: 1.15rem; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; margin: 12px 0; background: #000; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         /* Bible Selector Controls */
-        .bible-toolbar { background: white; padding: 18px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
+        .bible-toolbar { background: white; padding: 18px 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); margin-bottom: 20px; }
         .bible-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-        .bible-controls select { padding: 9px 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 0.95rem; }
+        .bible-controls select { padding: 9px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.95rem; }
 
         /* Dual Bible Panes */
         .bible-container { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .bible-pane { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.07); overflow: hidden; display: flex; flex-direction: column; }
-        .pane-header { background: #2c3e50; color: white; padding: 12px 18px; font-weight: 600; font-size: 1rem; }
+        .bible-pane { background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; }
+        .pane-header { background: #1e293b; color: white; padding: 12px 18px; font-weight: 600; font-size: 1rem; }
         .pane-content { padding: 20px; height: 580px; overflow-y: auto; line-height: 1.9; font-size: 1.05rem; background: #fff; scroll-behavior: smooth; }
         .verse-item { margin-bottom: 12px; padding: 4px 6px; border-radius: 4px; transition: background 0.3s; }
-        .verse-item.highlight { background-color: #fff9c4; }
-        .verse-num { font-weight: bold; color: #2980b9; margin-right: 8px; font-size: 0.95rem; }
-        .loading { color: #7f8c8d; font-style: italic; padding: 20px 0; }
+        .verse-item.highlight { background-color: #fef08a; }
+        .verse-num { font-weight: bold; color: #2563eb; margin-right: 8px; font-size: 0.95rem; }
+        .loading { color: #64748b; font-style: italic; padding: 20px 0; }
 
-        /* Family Altar PDF Viewer */
-        .pdf-box {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-            margin-bottom: 25px;
-        }
-        .pdf-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
-            align-items: center;
-        }
-        .pdf-frame {
-            width: 100%;
-            height: 750px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
+        /* Family Altar PDF Box */
+        .pdf-box { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); }
+        .pdf-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 15px; }
+        .pdf-frame { width: 100%; height: 750px; border: 1px solid #cbd5e1; border-radius: 8px; }
 
-        /* Church Details Card Styling */
-        .info-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.07);
-            border-left: 5px solid #3498db;
-        }
-        .info-row {
-            display: flex;
-            align-items: center;
-            margin-bottom: 16px;
-            font-size: 1.05rem;
-        }
-        .info-label {
-            font-weight: 700;
-            color: #2c3e50;
-            width: 170px;
-            flex-shrink: 0;
-        }
-        .info-val {
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        /* Church Details Card */
+        .info-card { background: white; border-radius: 10px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.06); border-left: 5px solid #2563eb; }
+        .info-row { display: flex; align-items: center; margin-bottom: 16px; font-size: 1.05rem; }
+        .info-label { font-weight: 700; color: #1e293b; width: 170px; flex-shrink: 0; }
+        .info-val { color: #334155; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
         .phone-call-btn {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            background: #27ae60;
+            background: #10b981;
             color: white;
             text-decoration: none;
             padding: 6px 14px;
             border-radius: 20px;
             font-weight: 600;
             font-size: 0.95rem;
-            box-shadow: 0 2px 6px rgba(39, 174, 96, 0.35);
+            box-shadow: 0 2px 6px rgba(16, 185, 129, 0.35);
         }
-        .phone-call-btn:hover {
-            background: #219653;
-        }
+        .phone-call-btn:hover { background: #059669; }
 
         /* Footer */
-        footer { background: #1a252f; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; }
-        footer p { margin-bottom: 6px; }
+        footer { background: #0f172a; color: white; text-align: center; padding: 30px 20px; margin-top: 50px; border-top: 1px solid #1e293b; }
+        footer p { margin-bottom: 6px; color: #94a3b8; }
 
         @media (max-width: 850px) {
-            .banner-corner-left { width: 95px; left: 6px; top: 6px; }
-            .banner-corner-right { width: 95px; right: 6px; top: 6px; }
-            .hero h2 { font-size: 1.5rem; }
-            .tabs-wrapper { justify-content: flex-start; }
+            .banner-corner-left { width: 85px; left: 8px; top: 12px; }
+            .banner-corner-right { width: 85px; right: 8px; top: 12px; }
+            .hero h2 { font-size: 1.6rem; }
+            .tabs-wrapper { flex-wrap: wrap; }
+            .tab-btn { flex: 1 1 45%; font-size: 0.85rem; padding: 8px 4px; }
             .bible-container { grid-template-columns: 1fr; }
             .info-row { flex-direction: column; align-items: flex-start; margin-bottom: 16px; }
             .info-label { width: 100%; margin-bottom: 2px; }
@@ -267,19 +243,19 @@
         <h1>LORD JESUS CHRIST PRAYER HOUSE</h1>
     </header>
 
-    <!-- Banner & Top-Corner Images -->
+    <!-- Banner & Top-Corner Transparent Images -->
     <div class="hero">
-        <!-- Top-Left Corner Cloud -->
-        <img src="cloud.jpg" alt="Supernatural Cloud" class="banner-corner-left" onerror="this.src='https://raw.githubusercontent.com/the-bibles/telugu-bible/master/assets/cloud.jpg'">
+        <!-- Cloud Top-Left (Transparent blend, no square background) -->
+        <img src="cloud.jpg" alt="Cloud" class="banner-corner-left" onerror="this.style.display='none'">
 
-        <!-- Top-Right Corner Eagle -->
-        <img src="eagle.jpg" alt="Flying Eagle" class="banner-corner-right" onerror="this.src='https://raw.githubusercontent.com/the-bibles/telugu-bible/master/assets/eagle.jpg'">
+        <!-- Eagle Top-Right (Transparent blend, no square background) -->
+        <img src="eagle.jpg" alt="Eagle" class="banner-corner-right" onerror="this.style.display='none'">
 
         <div class="hero-content">
             <h2>LORD JESUS CHRIST PRAYER HOUSE</h2>
             <p>"Only believe, all things are possible." — Mark 9:23</p>
 
-            <!-- Banner Action Buttons (Location + Phone Call) -->
+            <!-- Banner Action Buttons -->
             <div class="banner-actions">
                 <a href="https://maps.app.goo.gl/bZECLUsx2BbVvVRQ7?g_st=ac" target="_blank" class="loc-btn">
                     📍 Google Maps Pin ↗
@@ -289,13 +265,13 @@
                 </a>
             </div>
 
-            <!-- Single-Line Centered Tabs -->
+            <!-- Single-Line Centered Tabs (No scrollbar, all 5 visible) -->
             <div class="tabs-wrapper">
-                <button class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible (తెలుగు & Eng)</button>
-                <button class="tab-btn" onclick="switchTab('altarTab', this)">🔥 కుటుంబ బలిపీఠము (Family Altar)</button>
-                <button class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons & Messages</button>
-                <button class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Worship Songs</button>
-                <button class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
+                <button type="button" class="tab-btn active" onclick="switchTab('bibleTab', this)">📖 Holy Bible</button>
+                <button type="button" class="tab-btn" onclick="switchTab('altarTab', this)">🔥 Family Altar</button>
+                <button type="button" class="tab-btn" onclick="switchTab('sermonsTab', this)">🎥 Sermons</button>
+                <button type="button" class="tab-btn" onclick="switchTab('songsTab', this)">🎵 Songs</button>
+                <button type="button" class="tab-btn" onclick="switchTab('contactTab', this)">ℹ️ Church Details</button>
             </div>
         </div>
     </div>
@@ -368,7 +344,7 @@
         <!-- TAB 2: FAMILY ALTAR (Direct PDF Book Viewer) -->
         <section id="altarTab" class="tab-section">
             <h2 class="section-heading">ఒక కుటుంబ బలిపీఠము (Family Altar - PDF Book)</h2>
-            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read the original pages or download the PDF):</p>
+            <p style="margin-bottom: 18px;">సంపుటి - 1 దినవారీ ధ్యాన సందేశాలు (Scroll to read or open in full window):</p>
 
             <div class="pdf-box">
                 <div class="pdf-actions">
@@ -381,7 +357,7 @@
                 </div>
 
                 <!-- Embedded PDF Viewer -->
-                <iframe src="family-altar.pdf#toolbar=1" class="pdf-frame" title="Family Altar Book"></iframe>
+                <iframe src="family-altar.pdf" class="pdf-frame" title="Family Altar Book"></iframe>
             </div>
         </section>
 
@@ -392,7 +368,7 @@
                 <div class="card">
                     <div>
                         <h3>Sunday Worship Message</h3>
-                        <p style="font-size: 0.9rem; color: #666;">Speaker: Brother Sudhakar</p>
+                        <p style="font-size: 0.9rem; color: #64748b;">Speaker: Brother Sudhakar</p>
                         <div class="video-container">
                             <iframe src="https://www.youtube-nocookie.com/embed/WYO4Hou3vDE" title="Sunday Worship" allowfullscreen></iframe>
                         </div>
@@ -400,14 +376,14 @@
                     <a href="https://youtube.com/@ksudhakar9743" target="_blank" class="btn" style="text-align: center; margin-top: 10px;">Watch on YouTube ↗</a>
                 </div>
 
-                <div class="card" style="background: #eef5fa;">
+                <div class="card" style="background: #f8fafc;">
                     <div>
                         <h3>All Playlists & Recordings</h3>
-                        <p style="margin-top: 10px; font-size: 0.95rem;">Watch church recordings, fasting prayers, and messages directly on our YouTube channel.</p>
+                        <p style="margin-top: 10px; font-size: 0.95rem; color: #475569;">Watch church recordings, fasting prayers, and messages directly on our YouTube channel.</p>
                     </div>
                     <div style="margin-top: 25px;">
                         <a href="https://youtube.com/@ksudhakar9743/playlists" target="_blank" class="btn btn-yt" style="width: 100%; text-align: center; margin-bottom: 10px;">Open All Playlists ↗</a>
-                        <a href="https://youtube.com/@ksudhakar9743?sub_confirmation=1" target="_blank" class="btn btn-outline" style="width: 100%; text-align: center;">Subscribe to Channel</a>
+                        <a href="https://youtube.com/@ksudhakar9743?sub_confirmation=1" target="_blank" class="btn" style="width: 100%; text-align: center; background: #0f172a;">Subscribe to Channel</a>
                     </div>
                 </div>
             </div>
@@ -445,7 +421,6 @@
                     <span class="info-label">MOBILE NO:</span>
                     <div class="info-val">
                         <span>9959912087</span>
-                        <!-- Click-to-call button opens phone dialer -->
                         <a href="tel:9959912087" class="phone-call-btn" title="Tap to call">
                             📞 Call Now
                         </a>
@@ -457,11 +432,11 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">LOCATION PIN:</span>
-                    <span class="info-val"><a href="https://maps.app.goo.gl/bZECLUsx2BbVvVRQ7?g_st=ac" target="_blank" style="color: #e74c3c; font-weight: bold; text-decoration: none;">📍 Open Church in Google Maps ↗</a></span>
+                    <span class="info-val"><a href="https://maps.app.goo.gl/bZECLUsx2BbVvVRQ7?g_st=ac" target="_blank" style="color: #ef4444; font-weight: bold; text-decoration: none;">📍 Open Church in Google Maps ↗</a></span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">YOUTUBE:</span>
-                    <span class="info-val"><a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #3498db; text-decoration: none;">@ksudhakar9743 ↗</a></span>
+                    <span class="info-val"><a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #2563eb; text-decoration: none;">@ksudhakar9743 ↗</a></span>
                 </div>
                 <div class="info-row" style="margin-top: 15px;">
                     <span class="info-label">WEEKLY SERVICES:</span>
@@ -476,5 +451,129 @@
     <footer>
         <p><strong>LORD JESUS CHRIST PRAYER HOUSE</strong></p>
         <p>Pastor K Sudhakar | Mobile: +91 9959912087 | Regd No: 258(2023)</p>
-        <p>YouTube Ministry: <a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #3498db; text-decoration: none;">@ksudhakar9743</a></p>
-        <p>&copy; 2026 LORD JESUS CHRIST PRAYER HOUSE. All Rights Reserved.</
+        <p>YouTube Ministry: <a href="https://youtube.com/@ksudhakar9743" target="_blank" style="color: #38bdf8; text-decoration: none;">@ksudhakar9743</a></p>
+        <p>&copy; 2026 LORD JESUS CHRIST PRAYER HOUSE. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Tab Switching & Bible Script -->
+    <script>
+        // Tab switching function
+        function switchTab(tabId, btnElement) {
+            var sections = document.querySelectorAll('.tab-section');
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            var buttons = document.querySelectorAll('.tab-btn');
+            for (var j = 0; j < buttons.length; j++) {
+                buttons[j].classList.remove('active');
+            }
+            var target = document.getElementById(tabId);
+            if (target) {
+                target.classList.add('active');
+            }
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+        }
+
+        // Bible Functions
+        function onBookChange() {
+            var raw = document.getElementById('bookSelect').value;
+            var parts = raw.split('|');
+            var totalChapters = parseInt(parts[3]) || 1;
+            
+            var chSelect = document.getElementById('chapterSelect');
+            chSelect.innerHTML = '';
+            for (var i = 1; i <= totalChapters; i++) {
+                var opt = document.createElement('option');
+                opt.value = i;
+                opt.textContent = `Chapter ${i}`;
+                chSelect.appendChild(opt);
+            }
+            fetchChapter();
+        }
+
+        async function fetchChapter() {
+            var raw = document.getElementById('bookSelect').value;
+            var parts = raw.split('|');
+            var code = parts[0];
+            var enName = parts[1];
+            var teName = parts[2];
+            var chapter = document.getElementById('chapterSelect').value || 1;
+
+            document.getElementById('enTitle').innerText = `English: ${enName} ${chapter}`;
+            document.getElementById('teTitle').innerText = `తెలుగు: ${teName} ${chapter}`;
+
+            var enContent = document.getElementById('enContent');
+            var teContent = document.getElementById('teContent');
+
+            enContent.innerHTML = `<div class="loading">Loading English verses...</div>`;
+            teContent.innerHTML = `<div class="loading">వచనములు లోడ్ అవుతున్నాయి...</div>`;
+
+            // English Fetch
+            try {
+                var res = await fetch(`https://bible-api.com/${encodeURIComponent(enName)}+${chapter}?translation=web`);
+                if (res.ok) {
+                    var data = await res.json();
+                    if (data.verses && data.verses.length > 0) {
+                        enContent.innerHTML = data.verses.map(function(v) {
+                            return `<div class="verse-item" id="en-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
+                        }).join('');
+
+                        var vSelect = document.getElementById('verseSelect');
+                        vSelect.innerHTML = '';
+                        data.verses.forEach(function(v) {
+                            var opt = document.createElement('option');
+                            opt.value = v.verse;
+                            opt.textContent = `Verse ${v.verse}`;
+                            vSelect.appendChild(opt);
+                        });
+                    }
+                }
+            } catch (e) {
+                enContent.innerHTML = `<div class="verse-item" id="en-v-1"><span class="verse-num">1</span> In the beginning God created the heavens and the earth.</div>`;
+            }
+
+            // Telugu Fetch
+            try {
+                var teRes = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(`https://bolls.life/get-chapter/TEL/${code}/${chapter}/`)}`);
+                if (teRes.ok) {
+                    var json = await teRes.json();
+                    var verses = JSON.parse(json.contents);
+                    if (Array.isArray(verses) && verses.length > 0) {
+                        teContent.innerHTML = verses.map(function(v) {
+                            return `<div class="verse-item" id="te-v-${v.verse}"><span class="verse-num">${v.verse}</span>${v.text.trim()}</div>`;
+                        }).join('');
+                        return;
+                    }
+                }
+                throw new Error("Fallback");
+            } catch (e) {
+                teContent.innerHTML = `<div class="verse-item" id="te-v-1"><span class="verse-num">1</span> ఆదియందు దేవుడు భూమ్యాకాశములను సృజించెను.</div>`;
+            }
+        }
+
+        function jumpToVerse(vNum) {
+            var enEl = document.getElementById(`en-v-${vNum}`);
+            var teEl = document.getElementById(`te-v-${vNum}`);
+
+            document.querySelectorAll('.verse-item').forEach(function(el) {
+                el.classList.remove('highlight');
+            });
+
+            if (enEl) {
+                enEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                enEl.classList.add('highlight');
+            }
+            if (teEl) {
+                teEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                teEl.classList.add('highlight');
+            }
+        }
+
+        window.onload = function() {
+            onBookChange();
+        };
+    </script>
+</body>
+</html>
